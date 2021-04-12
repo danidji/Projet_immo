@@ -20,10 +20,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'build'), // chemin vers le fichier sass source
+  src: path.join(__dirname, 'build'/* 'build/css' */), // chemin vers le fichier sass source
   dest: path.join(__dirname, 'public'), // chemin vers la le ficher css source
   indentedSyntax: true, // true = .sass and false = .scss
-  sourceMap: true
+  sourceMap: true,
+  debug: true
 }));
 
 // Mise en place du répertoire static

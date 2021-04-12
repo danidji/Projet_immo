@@ -1,7 +1,9 @@
 // Variables
-$primary-color: #D9526B
+$first-color: #D9526B
 $secondary-color: #F2F2F2
 $thrid-color: #D90416
+
+$text-color: #222326
 
 //Mixin
 =getSize($width,$height)
@@ -21,23 +23,23 @@ $thrid-color: #D90416
   margin-bottom: $topBottom
 =getBorder()
   border: 5px $thrid-color solid
-  box-shadow: 5px 5px 10px $primary-color
+  box-shadow: 5px 5px 10px $first-color
   border-radius: 10px
 
 *
-  transition: all .2s
+  transition: all .1s
   // word-break: break-all
 
 body
   +getMargin(50px,0px)
   font: 18px nunito,"Lucida Grande", Helvetica, Arial, sans-serif
   background-color: $secondary-color
-  color: $primary-color
+  color: $text-color
 
 nav
   +getPadding(0,5px)
   background-color: $thrid-color
-  box-shadow: 5px 5px 10px $primary-color
+  box-shadow: 5px 5px 10px $first-color
   border-radius: 0px 0px 10px 10px
 
   .logo
@@ -64,10 +66,31 @@ nav
 
       &:hover
         color: $secondary-color
-        background-color: $primary-color
+        background-color: $first-color
 
       &:visited
         color: $secondary-color
+
+form
+  display: flex
+  flex-direction: column
+
+  div
+    margin: auto
+    display: flex
+    flex-direction: column
+    @include getPadding(0,10px)
+    @include getSize(50%,70px)
+    max-width: 50%
+
+    label
+      text-transform: uppercase
+
+    .formInput
+      @include getSize(100%,50px)
+      font-size: 1.5rem
+      .checked
+        background-color: $first-color
 
 @media screen and (min-width: 768px)
   nav

@@ -1,3 +1,4 @@
+//Fichier de gestion des routes
 module.exports = (app) => {
 
     // route vers l'accueil

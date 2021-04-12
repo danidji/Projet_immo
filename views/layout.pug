@@ -4,4 +4,16 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+
+    .container 
+      nav  
+        .logo TeLoger
+        ul
+          each val in [{lien:'/',text:'Accueil'},{lien:'#',text:'Inscription'},{lien:'#',text:'Se connecter'}]
+            li
+              a(href=val.lien) #{val.text}
+
+
     block content
+
+    script(src=process.env.BROWSER_REFRESH_URL)

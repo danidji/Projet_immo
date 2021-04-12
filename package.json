@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "dev": "browser-refresh ./bin/www",
     "start": "browser-refresh ./bin/www"
   },
   "dependencies": {

@@ -15,4 +15,15 @@ module.exports = (app) => {
 
     });
 
+    // gestion du formulaire post
+    app.post('/register', (req, res) => {
+
+        //On récupère les informations du formulaire dans req.body
+        console.log(req.body);
+
+        // On réaffiche le formulaire => possiblement une autre page plus tard
+        let User = require('../controllers/Users');
+        (new User()).print(req, res);
+        // res.end();
+    });
 };

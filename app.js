@@ -47,7 +47,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
 //gestion des routes
-require('./routes/routes')(app)
+require('./routes/routes')(app, mongoose)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

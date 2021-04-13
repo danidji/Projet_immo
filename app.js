@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 
+const bodyParser = require('body-parser');
+// console.log(bodyParser)
+
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
@@ -19,13 +22,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+// middleware sass
 app.use(sassMiddleware({
   src: path.join(__dirname, 'build'/* 'build/css' */), // chemin vers le fichier sass source
   dest: path.join(__dirname, 'public'), // chemin vers la le ficher css source
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true,
-  debug: true
+  debug: false
 }));
+
+//// BodyParser
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+
+
 
 // Mise en place du répertoire static
 app.use(express.static(path.join(__dirname, 'public')));

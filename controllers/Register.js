@@ -1,4 +1,4 @@
-module.exports = class Users {
+module.exports = class Register {
     print(req, res) {
         res.render('register');
     }

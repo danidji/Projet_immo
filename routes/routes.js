@@ -24,6 +24,5 @@ module.exports = (app) => {
         // On réaffiche le formulaire => possiblement une autre page plus tard
         let User = require('../controllers/Users');
         (new User()).print(req, res);
-        // res.end();
     });
 };

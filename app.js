@@ -35,11 +35,11 @@ app.use(sassMiddleware({
   debug: false
 }));
 
-// //// BodyParser
-// // parse application/x-www-form-urlencoded
-// app.use(bodyParser.urlencoded({ extended: false }))
-// // parse application/json
-// app.use(bodyParser.json())
+//// BodyParser
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 
 

@@ -16,32 +16,11 @@ module.exports = (app) => {
     });
 
     // gestion du formulaire post
-    app.post('/register', (req, res) => {
+    app.post('/inscription', (req, res) => {
 
 
         let Register = require('../src/controllers/Register');
         (new Register()).processForm(req, res);
 
-
-        // //On récupère les informations du formulaire dans req.body
-        // // console.log(req.body);
-        // let userData = req.body
-        // console.log(userData)
-
-
-        // // Connection à la BDD
-        // require('../bdd/database')(mongoose);
-
-        // //création d'un nouvel utilisateur 
-        // let User = require('../repository/User');
-        // (new User()).add(userData);
-
-
-        // //fermeture de la bdd ??
-
-
-
-        // // On redirige l'utilisateur vers la page d'accueil
-        // res.redirect('/'); l
     });
 };

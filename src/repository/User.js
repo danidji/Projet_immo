@@ -35,18 +35,8 @@ module.exports = class User {
     //Methode qui vérifie si une adresse mail est en base
     async findMail(mail) {
         const docs = await this.db.find(
-            { email: mail }
+            { email: mail });
 
-            , (err, docs) => {
-                if (docs !== null) {
-                    // console.log('utilisateur présent');
-                    return true
-                } else {
-                    // console.log('utilisateur absent');
-                    return false
-                }
-            });
-        console.log(docs)
         return docs
     }
 

@@ -1,6 +1,5 @@
 let User = require('../repository/User')
 let bcrypt = require('bcryptjs');
-var flash = require('express-flash-messages')
 
 
 module.exports = class Register {
@@ -21,10 +20,12 @@ module.exports = class Register {
             , phone: req.body.phone
 
         };
-        //Verifier si l'email n'est pas présente en base 
+
+        ////////  Verifier si l'email n'est pas présente en base 
+
         const verif = await (new User()).findMail(userData.email)
 
-        if (verif === true) {
+        //si ma verif est vide alors ajout mon utilisateur
         if (verif.length === 0) {
 
             //Hashage du mdp => sécurité
@@ -43,8 +44,8 @@ module.exports = class Register {
             // On redirige l'utilisateur vers la page d'accueil
             res.redirect('/');
         } else {
-            //
-            req.flash('error', 'email dejà présent en base');
+            //Sinon renvoie un message d'erreur
+            req.flash('error', 'Email dejà présent en base.');
             // On redirige l'utilisateur vers la page d'inscription
             res.redirect('/register')
         }

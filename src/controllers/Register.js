@@ -22,16 +22,16 @@ module.exports = class Register {
 
         // console.log(userData); //=> le mdp n'est pas encore hashé
 
-        //Hashage du mdp => sécurité
-        userData.pass = bcrypt.hashSync(
-            req.body.pass,
-            bcrypt.genSaltSync(10)
-        );
+            //Hashage du mdp => sécurité
+            userData.pass = bcrypt.hashSync(
+                req.body.pass,
+                bcrypt.genSaltSync(10)
+            );
 
         // console.log(userData); // => le mdp rest hashé
 
-        //création d'un nouvel utilisateur 
-        (new User()).add(userData);
+            //création d'un nouvel utilisateur 
+            (new User()).add(userData);
 
         // On redirige l'utilisateur vers la page d'accueil
         res.redirect('/');

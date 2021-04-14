@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-
+const config = require('./app/config')
 const bodyParser = require('body-parser');
 // console.log(bodyParser)
 
@@ -37,17 +37,27 @@ app.use(sassMiddleware({
 
 //// BodyParser
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
-app.use(bodyParser.json())
-
-
+app.use(bodyParser.json());
 
 // Mise en place du répertoire static
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Ajout du middleware express session
+const session = require('express-session');
+app.use(session({
+  secret: config.appKey, resave: false, saveUninitialized: false,
+  cookie: { maxAge: 3600000 }
+}));
+//----------
+
+//Ajout du middleware flash pour la gestion des messages flash
+const flash = require('express-flash-messages');
+app.use(flash());
+
 //gestion des routes
-require('./app/routes')(app, mongoose)
+require('./app/routes')(app);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

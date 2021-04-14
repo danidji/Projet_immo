@@ -25,6 +25,7 @@ module.exports = class Register {
         const verif = await (new User()).findMail(userData.email)
 
         if (verif === true) {
+        if (verif.length === 0) {
 
             //Hashage du mdp => sécurité
             userData.pass = bcrypt.hashSync(

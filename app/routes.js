@@ -1,17 +1,17 @@
 //Fichier de gestion des routes
-module.exports = (app, mongoose) => {
+module.exports = (app) => {
 
     // route vers l'accueil
     app.get('/', (req, res) => {
-        let Home = require('../controllers/Home');
+        let Home = require('../src/controllers/Home');
         (new Home()).print(req, res);
 
     });
 
     // route vers la page d'inscription
     app.get('/register', (req, res) => {
-        let Register = require('../controllers/Register');
-        (new Register()).print(req, res);
+        let Register = require('../src/controllers/Register');
+        (new Register()).printForm(req, res);
 
     });
 
@@ -19,8 +19,8 @@ module.exports = (app, mongoose) => {
     app.post('/register', (req, res) => {
 
 
-        let Register = require('../controllers/Register');
-        (new Register()).process(req, res);
+        let Register = require('../src/controllers/Register');
+        (new Register()).processForm(req, res);
 
 
         // //On récupère les informations du formulaire dans req.body

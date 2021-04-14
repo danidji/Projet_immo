@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+// Connection à la BDD
+require('../bdd/database')();
 
+//Schéma de données user
 const userSchema = mongoose.Schema({
     email: { type: String }
     , pass: { type: String }

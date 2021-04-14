@@ -1,5 +1,8 @@
-module.exports = (mongoose) => {
-    const config = require('../config/config')
+const mongoose = require('mongoose');
+
+module.exports = () => {
+    const config = require('../../app/config')
+
 
     mongoose.connect(`mongodb+srv://danUser:${config.db.pwd}@${config.db.cluster}.mongodb.net/${config.db.dbName}`,
         {

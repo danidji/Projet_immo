@@ -27,10 +27,29 @@ module.exports = class User {
     constructor() {
         this.db = mongoose.model('user', userSchema); // (nom de la collection, schema utilisé)
     }
-    add(userData) {
-        this.db.create(userData);
-        console.log('Utilisateur ajouté')
+    //Methode d'ajout d'utilisateur
+    async add(userData) {
+        await this.db.create(userData);
+        return true
     }
+    //Methode qui vérifie si une adresse mail est en base
+    async findMail(mail) {
+        const docs = await this.db.find(
+            { email: mail }
+
+            , (err, docs) => {
+                if (docs !== null) {
+                    // console.log('utilisateur présent');
+                    return true
+                } else {
+                    // console.log('utilisateur absent');
+                    return false
+                }
+            });
+        console.log(docs)
+        return docs
+    }
+
 }
 
 

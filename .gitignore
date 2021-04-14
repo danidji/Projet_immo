@@ -70,3 +70,5 @@ package-lock.json
 *.css
 *.css.map
 
+#Exclusion du fichier de config : 
+/app/config.js

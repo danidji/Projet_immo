@@ -8,10 +8,16 @@ html
     .container 
       nav  
         .logo TeLoger
-        ul
-          each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'}]
-            li
-              a(href=val.lien) #{val.text}
+        if session === undefined
+          ul
+            each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'}]
+              li
+                a(class=val.class,href=val.lien) #{val.text}
+        else
+          ul
+            each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/dashboard',text:'Admin'},{lien:'#',text:'Se déconnecter'}]
+              li
+                a(class=val.class,href=val.lien) #{val.text}
 
       - var messages = getMessages()
         if messages.notify

@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+	h1 Connectez-vous 
+
+	form.formLogin(action="/connexion", method="post") 
+		.mail
+			label(for="email") Adresse E-mail :
+			input(
+				type="email"
+				, name="email"
+				,class="formInput email"
+				,required
+				)
+		.psw
+			label(for="pass") mot de passe :
+			input(
+				type="password"
+				, name="pass"
+				,class="formInput pass"
+				,minLength="6"
+				,required
+				)
+		.checked
+			input(type="submit",class='formInput check' value="Enregistrer")

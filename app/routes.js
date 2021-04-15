@@ -15,12 +15,28 @@ module.exports = (app) => {
 
     });
 
-    // gestion du formulaire post
+    // gestion du formulaire post inscription
     app.post('/inscription', (req, res) => {
-
 
         let Register = require('../src/controllers/Register');
         (new Register()).processForm(req, res);
 
     });
+
+    // Création d'une route vers la page de connexion
+    app.get('/login', (req, res) => {
+        let Login = require('../src/controllers/Login');
+        (new Login()).printLogin(req, res);
+
+    });
+
+    // gestion du formulaire post connexion
+    app.post('/connexion', (req, res) => {
+        let Login = require('../src/controllers/Login');
+        (new Login()).processLogin(req, res);
+    })
+
+
+
+
 };

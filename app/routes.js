@@ -37,6 +37,14 @@ module.exports = (app) => {
     })
 
 
+    // route vers la page admin
+    app.get('/', (req, res) => {
+        let Admin = require('../src/controllers/Admin');
+        (new Admin()).print(req, res);
+
+    });
+
+
 
 
 };

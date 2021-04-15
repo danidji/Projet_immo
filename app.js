@@ -44,6 +44,8 @@ app.use(bodyParser.json());
 // Mise en place du répertoire static
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 //Ajout du middleware express session
 const session = require('express-session');
 app.use(session({
@@ -51,6 +53,23 @@ app.use(session({
   cookie: { maxAge: 3600000 }
 }));
 //----------
+
+// permet d'envoyer des variables à toutes les vues
+app.use((req, res, next) => {
+  // console.log(res.locals)
+  // res.locals.session = req.session;
+
+  //dev admin session
+  res.locals.session = config.userDevAdmin;
+
+  if (res.locals.session !== undefined) {
+    // console.log(res.locals)
+    console.log(res.locals)
+  }
+
+  next();
+});
+
 
 //Ajout du middleware flash pour la gestion des messages flash
 const flash = require('express-flash-messages');

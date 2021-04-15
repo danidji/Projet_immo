@@ -23,16 +23,23 @@ module.exports = class Register {
 
         ////////  Verifier si l'email n'est pas présente en base 
 
-        const verif = await (new User()).findMail(userData.email)
+        const verif = await (new User()).findMail(userData.email);
 
         //si ma verif est vide alors ajout mon utilisateur
-        if (verif.length === 0) {
+        if (verif === null) {
 
             //Hashage du mdp => sécurité
-            userData.pass = bcrypt.hashSync(
-                req.body.pass,
-                bcrypt.genSaltSync(10)
-            );
+
+            let salt = bcrypt.genSaltSync(10);
+            //   v--mdp crypter                  v-- mdp à crypter
+            let passwordHash = bcrypt.hashSync(userData.pass, salt);
+
+            userData.pass = passwordHash;
+
+            // userData.pass = bcrypt.hashSync(
+            //     req.body.pass,
+            //     bcrypt.genSaltSync(10)
+            // );
             // console.log(userData); // => le mdp rest hashé
 
             //création d'un nouvel utilisateur 
@@ -43,8 +50,9 @@ module.exports = class Register {
 
             // On redirige l'utilisateur vers la page d'accueil
             res.redirect('/');
-        } else {
-            //Sinon renvoie un message d'erreur
+        }
+        //Sinon renvoie un message d'erreur
+        else {
             req.flash('error', 'Email dejà présent en base.');
             // On redirige l'utilisateur vers la page d'inscription
             res.redirect('/register')

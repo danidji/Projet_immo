@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 // console.log(bodyParser)
 
 //database connection
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 // require('./bdd/database')(mongoose)
 

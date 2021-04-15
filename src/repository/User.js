@@ -34,11 +34,12 @@ module.exports = class User {
     }
     //Methode qui vérifie si une adresse mail est en base
     async findMail(mail) {
-        const docs = await this.db.find(
+        const docs = await this.db.findOne(
             { email: mail });
 
         return docs
     }
+
 
 }
 

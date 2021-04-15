@@ -9,7 +9,7 @@ html
       nav  
         .logo TeLoger
         ul
-          each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'#',text:'Se connecter'}]
+          each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'}]
             li
               a(href=val.lien) #{val.text}
 
@@ -25,4 +25,4 @@ html
 
       
 
-    script(src=process.env.BROWSER_REFRESH_URL)
+    //- script(src=process.env.BROWSER_REFRESH_URL)

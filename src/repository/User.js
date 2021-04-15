@@ -29,8 +29,11 @@ module.exports = class User {
     }
     //Methode d'ajout d'utilisateur
     async add(userData) {
-        await this.db.create(userData);
-        return true
+        let status = true;
+        await this.db.create(userData, (err) => {
+            if (err) status = false;
+        });
+        return status;
     }
     //Methode qui vérifie si une adresse mail est en base
     async findMail(mail) {

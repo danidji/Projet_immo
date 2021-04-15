@@ -22,8 +22,8 @@ module.exports = class Register {
         };
 
         ////////  Verifier si l'email n'est pas présente en base 
-
-        const verif = await (new User()).findMail(userData.email);
+        let repo = new User();
+        const verif = await repo.findMail(userData.email);
 
         //si ma verif est vide alors ajout mon utilisateur
         if (verif === null) {
@@ -33,17 +33,11 @@ module.exports = class Register {
             let salt = bcrypt.genSaltSync(10);
             //   v--mdp crypter                  v-- mdp à crypter
             let passwordHash = bcrypt.hashSync(userData.pass, salt);
-
             userData.pass = passwordHash;
-
-            // userData.pass = bcrypt.hashSync(
-            //     req.body.pass,
-            //     bcrypt.genSaltSync(10)
-            // );
             // console.log(userData); // => le mdp rest hashé
 
             //création d'un nouvel utilisateur 
-            (new User()).add(userData);
+            repo.add(userData);
 
             //Message flash de création utilisateur
             req.flash('notify', 'Votre compte a bien été créé.');

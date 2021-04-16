@@ -4,7 +4,12 @@ let bcrypt = require('bcryptjs');
 
 module.exports = class Register {
     printForm(req, res) {
-        res.render('register');
+        // console.log(res.locals.session)
+        res.render('register',
+            {
+                title: 'TeLoger'
+                , session: res.locals.session //=> remettre .users en dehors du dev admin
+            });
     }
 
     async processForm(req, res) {

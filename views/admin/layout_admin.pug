@@ -7,7 +7,7 @@ html
 
         .head_admin
             .headTitle
-                h1 SeLoger
+                h1 TeLoger
             .admin 
                 h1 Admin 
             .notif 
@@ -21,7 +21,7 @@ html
                     .status online 
                 .menu_admin 
                     ul
-                        each val in [{lien:'/dashboard',text:'🖥️ Dashboard'},{lien:'/biens',text:'🏠 Biens'},{lien:'#',text:'👥 Contact'},{lien:'#',text:'📴 Logout'}]
+                        each val in [{lien:'/dashboard',text:'🖥️ Dashboard'},{lien:'/biens',text:'🏠 Biens'},{lien:'#',text:'👥 Contact'},{lien:'/logOut_admin',text:'📴 Logout'}]
                             li
                                 a(class=val.class,href=val.lien) #{val.text}
             .section_admin

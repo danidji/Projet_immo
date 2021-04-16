@@ -31,7 +31,7 @@ module.exports = class Login {
             if (verifPwd) {
                 req.flash('notify', 'Vous êtes connecté !');
                 // on stocke les données utilsateur en session
-                // req.session.users = verifMail;
+                req.session.users = verifMail;
 
                 res.redirect('/');
             } else {

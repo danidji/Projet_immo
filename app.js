@@ -32,7 +32,7 @@ app.use(sassMiddleware({
   dest: path.join(__dirname, 'public'), // chemin vers la le ficher css source
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true,
-  debug: false
+  debug: true
 }));
 
 //// BodyParser
@@ -62,10 +62,10 @@ app.use((req, res, next) => {
   //dev admin session
   res.locals.session = config.userDevAdmin;
 
-  if (res.locals.session !== undefined) {
-    // console.log(res.locals)
-    console.log(res.locals)
-  }
+  // if (res.locals.session !== undefined) {
+  //   // console.log(res.locals)
+  //   // console.log(res.locals)
+  // }
 
   next();
 });

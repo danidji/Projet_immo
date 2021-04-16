@@ -34,9 +34,10 @@ module.exports = class Realty {
     }
 
     //Methode d'ajout d'un bien immo
-    async add(realtyData) {
+    add(realtyData) {
+        console.log(realtyData)
         let status = true;
-        await this.db.create(realtyData, (err) => {
+        this.db.create(realtyData, (err) => {
             if (err) status = false;
         });
         return status;

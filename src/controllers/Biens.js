@@ -1,28 +1,34 @@
+let Realty = require('../repository/Biens')
+
 module.exports = class Biens {
     print(req, res) {
         res.render('admin/biens', {
             title: 'TeLoger'
-            , session: res.locals.session //=> remmettre .users en dehors du dev admin
+            , session: res.locals.session //=> remettre .users en dehors du dev admin
         });
     }
 
-    async processForm(req, res) {
+    processForm(req, res) {
         // console.log(req.body);
 
-        let realtyData = {
+        let realtyAdress = {
             adress: req.body.adress
             , postalCode: req.body.postalCode
             , city: req.body.city
             , infosAdress: req.body.infoAdress
-            , contactName: req.body.contactName
-            , contactFirstName: req.body.contactFirstName
-            , mail: req.body.mail
-            , phoneNumber: req.body.phoneNumber
+        };
+        let contact = {
+            nom: req.body.contactName
+            , prenom: req.body.contactFirstName
+            , email: req.body.mail
+            , phone: req.body.phoneNumber
             , infosContact: req.body.infoContact
-        }
+        };
 
-        // console.log(realtyData)
+        // console.log(realtyAdress)
+        let repo = new Realty();
 
+        repo.add({ realtyAdress, contact })
 
         res.redirect('/biens');
     }

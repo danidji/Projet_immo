@@ -1,0 +1,188 @@
+
+// *
+//     transition: all .1s
+  // word-break: break-all
+html
+    height: 100%
+body
+    +getMargin(50px,0px)
+    font: 18px nunito,"Lucida Grande", Helvetica, Arial, sans-serif
+    background-color: $secondary-color
+    color: $text-color
+    height: 100%
+
+nav
+    +getPadding(0,5px)
+    background-color: $third-color
+    box-shadow: 5px 5px 10px $first-color
+    border-radius: 0px 0px 10px 10px
+
+    .logo
+        color: $secondary-color
+        font-size: 2.5rem
+        font-weight: bold
+        font-style: italic
+        text-align: center
+
+    ul
+        text-align: center
+        padding: 0
+
+    li
+        +getMargin(15px,5px)
+        font-size: 1.5em
+        font-weight: bold
+        list-style-type: none
+    a
+        color: $secondary-color
+        +getPadding(0px,5px)
+        display: block
+        text-decoration: none
+
+        &:hover
+            color: $secondary-color
+            background-color: $first-color
+
+        &:visited
+            color: $secondary-color
+
+.alert
+    text-align: center
+    @include getPadding(0,10px)
+    @include getMargin(0,20px)
+    color: #fff
+
+.alert-danger
+    background-color: $first-color
+
+.alert-info
+    background-color: $four-color
+
+.formLogin, .formRegister
+    display: flex
+    flex-direction: column
+
+    div
+        margin: auto
+        display: flex
+        flex-direction: column
+        @include getPadding(0,10px)
+        @include getSize(50%,70px)
+        max-width: 50%
+
+    label
+        text-transform: uppercase
+
+    .formInput
+        height: 50px
+        font-size: 1.5rem
+        .checked
+            background-color: $first-color
+
+// Style session Admin
+.head_admin
+    display: flex
+    justify-content: space-between
+    align-items: center
+    // @include getMargin(0,auto)
+    // @include getPadding(5px, 0px)
+    @include getSize(100%,10%)
+    background-color: $third-color
+
+// div
+//     @include getPadding(10px,10px)
+
+.content_admin
+    display: flex
+    @include getSize(100%,90%)
+
+    .sideBar_admin
+        @include getSize(20%,100%)
+        background-color: $first-color
+
+        .userData
+            @include getSize(100%,30%)
+
+        .menu_admin
+            @include getSize(100%,70%)
+            ul
+                padding-inline-start: 0
+
+                li
+                    display: block
+                    font-size: 1.2em
+                    font-weight: bold
+                    text-align: center
+                @include getSize(100%,30px)
+                @include getMargin(0px,20px)
+                list-style-type: none
+                align-content: center
+                a
+                    display: block
+                    text-decoration: none
+                    @include getSize(100%,40px)
+                    @include getMargin(0px,0px)
+                    @include getPadding(0,0px)
+
+                    &:hover
+                        color: $secondary-color
+                        background-color: $third-color
+
+                    &:visited
+                        color: $secondary-color
+
+    .section_admin
+        @include getSize(80%,100%)
+        @include getPadding(5px,0)
+        background-color: #ffc4c4
+
+        h2
+            font-size: 0.8em
+        .contentForm
+            background-color: #fff
+            height: 90%
+
+        .form_realty
+            display: flex
+            height: 90%
+            .form1, .form2
+                display: flex
+                flex-direction: column
+            div
+                margin-left: 50px
+                display: flex
+                flex-direction: column
+                @include getPadding(0,10px)
+                @include getSize(50%,50px)
+                max-width: 50%
+
+                label
+                    text-transform: uppercase
+
+                .formInput
+                    height: 50px
+                    font-size: 1.5rem
+
+                .infoForm
+                    height: 150px
+
+            // .checked
+            //   background-color: $first-color
+
+@media screen and (min-width: 768px)
+    nav
+        display: flex
+        justify-content: space-between
+        .logo
+            @include getMargin(0,auto)
+            padding-left: 20px
+
+        ul
+            display: flex
+            justify-content: space-around
+
+        a
+            +getPadding(50px,5px)
+
+    .alert
+        width: 50%

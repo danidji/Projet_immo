@@ -5,22 +5,24 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
 
-    .head 
-        .headTitle SeLoger 
-        .admin Admin 
-        .notif 
-            .message MSG
-            .alert ALT
-
-    .sideBar
-        .userData 
-            .photo 
-            .name Jean Pierre
-            .status online 
-        .menu 
-            ul
-          each val in [{lien:'#',text:'🖥️ Dashboard'},{lien:'#',text:'🏠 Biens'},{lien:'#',text:'👥 Contact'},{lien:'#',text:'📴 Logout'}]
-            li
-              a(class=val.class,href=val.lien) #{val.text}
-
-block content
+        .head_admin
+            .headTitle
+                h1 SeLoger
+            .admin 
+                h1 Admin 
+            .notif 
+                .notif_message MSG
+                .notif_alert ALT
+        .content_admin
+            .sideBar_admin
+                .userData 
+                    .photo 
+                    .name Jean Pierre
+                    .status online 
+                .menu_admin 
+                    ul
+                        each val in [{lien:'/dashboard',text:'🖥️ Dashboard'},{lien:'/biens',text:'🏠 Biens'},{lien:'#',text:'👥 Contact'},{lien:'#',text:'📴 Logout'}]
+                            li
+                                a(class=val.class,href=val.lien) #{val.text}
+            .section_admin
+                block content

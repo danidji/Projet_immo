@@ -1,0 +1,80 @@
+extends layout_admin
+
+block content
+    h2 🏠/  Les biens
+
+    .contentForm 
+
+        h3 Enregistrer un bien 
+        form.form_realty(action="/biensImmo", method="post")
+            .form1 Adresse du bien
+                //- legend Adresse du bien
+                .adressForm
+                    label(for="adress") Adresse du bien : 
+                    input(
+                        type="text"
+                        , name="adress"
+                        , class="formInput adress"
+                        )
+                .postalCodeForm
+                    label(for="postalCode") Code postal : 
+                    input(
+                        type="number"
+                        , name="postalCode"
+                        , class="formInput postalCode"
+                        )
+                .cityForm 
+                    label(for="city") Ville : 
+                    input(
+                        type="text"
+                        , name="city"
+                        , class="formInput city"
+                        )
+                .infoForm
+                    label(for="infosAdress") Informations complémentaires : 
+                    textarea(
+                        name="infosAdress"
+                        , class="texteArea infos"
+                        , cols="30"
+                        , rows="10"
+                        )
+            .form2 Contact du bien
+                //- legend 
+                .lastNameForm
+                    label(for="contactName") Nom: 
+                    input(
+                        type="text"
+                        , name="contactName"
+                        , class="formInput contactName"
+                        )
+                .firstNameForm
+                    label(for="contactFirstName") Prénom : 
+                    input(
+                        type="text"
+                        , name="contactFirstName"
+                        , class="formInput contactFirstName"
+                        )
+                .emailForm
+                    label(for="mail") Email: 
+                    input(
+                        type="email"
+                        , name="mail"
+                        , class="formInput mail"
+                        )
+                .phoneForm 
+                    label(for="phoneNumber") Téléphone : 
+                    input(
+                        type="tel"
+                        , name="phoneNumber"
+                        , class="formInput phoneNumber"
+                        )
+                .infoForm
+                    label(for="infosContact") Informations complémentaires : 
+                    textarea(
+                        name="infosContact"
+                        , class="texteArea info2"
+                        , cols="30"
+                        , rows="10"
+                        )  
+                .checked
+                    input(type="submit",class='formInput check' value="Enregistrer") 

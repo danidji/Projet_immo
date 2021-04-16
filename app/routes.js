@@ -38,9 +38,23 @@ module.exports = (app) => {
 
 
     // route vers la page admin
-    app.get('/', (req, res) => {
+    app.get('/dashboard', (req, res) => {
         let Admin = require('../src/controllers/Admin');
         (new Admin()).print(req, res);
+
+    });
+
+    // route vers la page biens
+    app.get('/biens', (req, res) => {
+        let Biens = require('../src/controllers/Biens');
+        (new Biens()).print(req, res);
+
+    });
+
+    // gestion du formulaire des biens immo
+    app.post('/biensImmo', (req, res) => {
+        let Biens = require('../src/controllers/Biens');
+        (new Biens()).processForm(req, res);
 
     });
 

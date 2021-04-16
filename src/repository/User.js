@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     }
     , date: { type: Date, default: Date.now }
 
-}, { versionKey: false })
+}, { versionKey: false });
 
 module.exports = class User {
     constructor() {

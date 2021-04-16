@@ -35,7 +35,12 @@ module.exports = (app) => {
         let Login = require('../src/controllers/Login');
         (new Login()).processLogin(req, res);
     })
+    //route de déconnexion utilisateur
+    app.get('/logout', (req, res) => {
+        let Logout = require('../src/controllers/logout');
+        (new Logout()).quitSession(req, res);
 
+    });
 
     // route vers la page admin
     app.get('/dashboard', (req, res) => {
@@ -58,7 +63,9 @@ module.exports = (app) => {
 
     });
 
-
-
+    //route de deconnexion admin 
+    app.get('/logOut_admin', (req, res) => {
+        res.redirect('/')
+    });
 
 };

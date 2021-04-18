@@ -1,0 +1,106 @@
+body
+    margin: 0
+    padding: 0
+
+.grid
+    display: grid
+    grid-template-columns: 200px 9fr
+    grid-template-rows: 100px 9fr
+    height: 100vh
+
+    // Style session Admin
+.headTitle
+    background-color: #8F868A //$third-color
+    text-align: center
+
+    color: $secondary-color
+    font-size: 1.3rem
+    font-weight: bold
+    font-style: italic
+
+.head_admin
+    display: flex
+    justify-content: space-between
+    align-items: center
+    // @include getMargin(0,auto)
+    // @include getPadding(5px, 0px)
+    // @include getSize(100%,10%)
+    background-color: #8F868A // $third-color
+
+// .content_admin
+//     display: flex
+//     @include getSize(100%,90%)
+
+.sideBar_admin
+    // @include getSize(20%,100%)
+    background-color: #787890 // $first-color
+
+    .userData
+        @include getSize(100%,30%)
+
+    .menu_admin
+        @include getSize(100%,70%)
+        ul
+            padding-inline-start: 30px
+
+            li
+                display: block
+                font-size: 1.2em
+                font-weight: bold
+                // text-align: center
+                @include getSize(100%,30px)
+                @include getMargin(0px,20px)
+                list-style-type: none
+                align-content: center
+            a
+                display: block
+                text-decoration: none
+                @include getSize(100%,40px)
+                @include getMargin(0px,0px)
+                @include getPadding(0,0px)
+
+                &:hover
+                    color: $secondary-color
+                    background-color: #606078 //$third-color
+
+                &:visited
+                    color: $secondary-color
+
+.section_admin
+    // @include getSize(80%,100%)
+    @include getPadding(5px,0)
+    background-color: #E8E8E8
+    // box-shadow: 5px 5px 10px #536273
+
+    h2
+        font-size: 0.8em
+    .contentForm
+        background-color: #fff
+        height: 90%
+
+        .form_realty
+            display: flex
+            height: 90%
+            .form1, .form2
+                display: flex
+                flex-direction: column
+            div
+                margin-left: 50px
+                display: flex
+                flex-direction: column
+                @include getPadding(0,10px)
+                @include getSize(50%,50px)
+                max-width: 50%
+
+                label
+                    text-transform: uppercase
+
+                .formInput
+                    height: 50px
+                    font-size: 1.5rem
+
+                .infoForm
+                    height: 150px
+
+            // .checked
+            //   background-color: $first-color

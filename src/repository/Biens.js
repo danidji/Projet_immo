@@ -55,4 +55,12 @@ module.exports = class Realty {
 
         });
     }
+    deleteOne(id) {
+        return new Promise((resolve, reject) => {
+            this.db.deleteOne({ _id: id }, (err) => {
+                if (err) reject(err)
+                resolve(err)
+            })
+        })
+    }
 }

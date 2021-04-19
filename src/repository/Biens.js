@@ -38,12 +38,21 @@ module.exports = class Realty {
 
     //Methode d'ajout d'un bien immo
     add(realtyData) {
-        console.log(realtyData)
+        // console.log(realtyData)
         let status = true;
         this.db.create(realtyData, (err) => {
             if (err) status = false;
         });
+        // console.log(status)
         return status;
     }
+    findAllRealty() {
+        return new Promise((resolve, reject) => {
+            this.db.find({}, (err, docs) => {
+                if (err) reject(err);
+                resolve(docs);
+            });
 
+        });
+    }
 }

@@ -7,7 +7,6 @@ block content
         h3 Liste des biens
         .realtyListButton 
             a(class=realtyList, href="/admin/biens") Enregistrer un bien
-        //- button.realtyList Listes des biens
 
     .contentList
         table 
@@ -29,4 +28,4 @@ block content
                         td.delete 
                             a(href="/admin/realtyList/delete/" + val._id) 🗑️
                         td.modify 
-                            a(href="#") 🖊️
+                            a(href="/admin/realtyList/modify/" + val._id) 🖊️

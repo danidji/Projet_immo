@@ -9,7 +9,7 @@ module.exports = class Biens {
     }
 
     processForm(req, res) {
-        console.log(req.body);
+        // console.log(req.body);
 
         let realtyAdress = {
             sellerName: req.body.seller
@@ -18,14 +18,14 @@ module.exports = class Biens {
             , city: req.body.city
             , surface: req.body.surface
             , room: req.body.room
-            , infosAdress: req.body.infoAdress
+            , infosAdress: req.body.infosAdress
         };
         let contact = {
             nom: req.body.contactName
             , prenom: req.body.contactFirstName
             , email: req.body.mail
             , phone: req.body.phoneNumber
-            , infosContact: req.body.infoContact
+            , infosContact: req.body.infosContact
         };
 
         // console.log(realtyAdress)
@@ -33,6 +33,6 @@ module.exports = class Biens {
 
         repo.add({ realtyAdress, contact })
 
-        res.redirect('/admin/biens');
+        res.redirect('/admin/realtyList');
     }
 };

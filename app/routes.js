@@ -1,16 +1,26 @@
 //Fichier de gestion des routes
+let Home = require('../src/controllers/Home');
+let Register = require('../src/controllers/Register');
+let Login = require('../src/controllers/Login');
+let Logout = require('../src/controllers/logout');
+let Admin = require('../src/controllers/Admin');
+let Biens = require('../src/controllers/Biens');
+let Realty_list = require('../src/controllers/Realty_list');
+
+
+
 module.exports = (app) => {
 
     // route vers l'accueil
     app.get('/', (req, res) => {
-        let Home = require('../src/controllers/Home');
+
         (new Home()).print(req, res);
 
     });
 
     // route vers la page d'inscription
     app.get('/register', (req, res) => {
-        let Register = require('../src/controllers/Register');
+
         (new Register()).printForm(req, res);
 
     });
@@ -18,61 +28,65 @@ module.exports = (app) => {
     // gestion du formulaire post inscription
     app.post('/inscription', (req, res) => {
 
-        let Register = require('../src/controllers/Register');
         (new Register()).processForm(req, res);
 
     });
 
     // Création d'une route vers la page de connexion
     app.get('/login', (req, res) => {
-        let Login = require('../src/controllers/Login');
+
         (new Login()).printLogin(req, res);
 
     });
 
     // gestion du formulaire post connexion
     app.post('/connexion', (req, res) => {
-        let Login = require('../src/controllers/Login');
+
         (new Login()).processLogin(req, res);
     })
     //route de déconnexion utilisateur
     app.get('/logout', (req, res) => {
-        let Logout = require('../src/controllers/logout');
+
         (new Logout()).quitSession(req, res);
 
     });
 
     // route vers la page admin
-    app.get('/dashboard', (req, res) => {
-        let Admin = require('../src/controllers/Admin');
+    app.get('/admin/dashboard', (req, res) => {
+
         (new Admin()).print(req, res);
 
     });
 
     // route vers la page biens
-    app.get('/biens', (req, res) => {
-        let Biens = require('../src/controllers/Biens');
+    app.get('/admin/biens', (req, res) => {
+
         (new Biens()).print(req, res);
 
     });
 
     // gestion du formulaire des biens immo
-    app.post('/biensImmo', (req, res) => {
-        let Biens = require('../src/controllers/Biens');
+    app.post('/admin/biensImmo', (req, res) => {
+
         (new Biens()).processForm(req, res);
 
     });
 
     //route de deconnexion admin 
-    app.get('/logOut_admin', (req, res) => {
+    app.get('/admin/logout_admin', (req, res) => {
         res.redirect('/')
     });
 
     // routes vers la liste des biens 
-    app.get('/realtyList', (req, res) => {
-        let Realty_list = require('../src/controllers/Realty_list');
+    app.get('/admin/realtyList', (req, res) => {
 
-        (new Realty_list()).print(req, res);
+
+        (new Realty_list()).printRealty(req, res);
+    })
+
+    // routes pour supprimer un bien 
+    app.get('/admin/realtyList/delete/:id', (req, res) => {
+        (new Realty_list()).deleteRealty(req, res);
     })
 
 };

@@ -33,6 +33,6 @@ module.exports = class Biens {
 
         repo.add({ realtyAdress, contact })
 
-        res.redirect('/biens');
+        res.redirect('/admin/biens');
     }
 };

@@ -6,12 +6,12 @@ block content
     .headRealty
         h3 Enregistrer un bien 
         .realtyListButton 
-            a(class=realtyList, href="/realtyList") Listes des biens
+            a(class=realtyList, href="/admin/realtyList") Listes des biens
         //- button.realtyList Listes des biens
 
     .contentForm 
             
-        form.form_realty(action="/biensImmo", method="post")
+        form.form_realty(action="/admin/biensImmo", method="post")
             .form1 Adresse du bien
                 //- legend Adresse du bien
                 .sellerName

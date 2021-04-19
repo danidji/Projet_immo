@@ -6,7 +6,7 @@ block content
     .headRealty
         h3 Liste des biens
         .realtyListButton 
-            a(class=realtyList, href="#") Enregistrer un bien
+            a(class=realtyList, href="/admin/biens") Enregistrer un bien
         //- button.realtyList Listes des biens
 
     .contentList
@@ -19,12 +19,14 @@ block content
                     th Surface en m²
                     th Nb de pièces
             tbody
-                tr
-                    each val in realtyList
+                each val in realtyList
+                    tr
                         td= val.realtyAdress.sellerName 
                         td= val.realtyAdress.adress 
                         td= val.realtyAdress.postalCode+ ' ' +val.realtyAdress.city 
                         td= val.realtyAdress.surface 
                         td= val.realtyAdress.room
-
-                        //- td #{val.realtyAdress.postalCode} #{val.realtyAdress.city} 
+                        td.delete 
+                            a(href="/admin/realtyList/delete/" + val._id) 🗑️
+                        td.modify 
+                            a(href="#") 🖊️

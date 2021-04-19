@@ -3,14 +3,24 @@ extends layout_admin
 block content
     h2 🏠/  Les biens
 
-    .contentForm 
+    .headRealty
+        h3 Enregistrer un bien 
+        .realtyListButton 
+            a(class=realtyList, href="/realtyList") Listes des biens
+        //- button.realtyList Listes des biens
 
-        .headRealty
-            h3 Enregistrer un bien 
+    .contentForm 
             
         form.form_realty(action="/biensImmo", method="post")
             .form1 Adresse du bien
                 //- legend Adresse du bien
+                .sellerName
+                    label(for="seller") Nom du vendeur: 
+                    input(
+                        type="text"
+                        , name="seller"
+                        , class="formInput seller"
+                        )
                 .adressForm
                     label(for="adress") Adresse du bien : 
                     input(
@@ -32,6 +42,19 @@ block content
                         , name="city"
                         , class="formInput city"
                         )
+                .realtyDescription 
+                    label(for="surface") Surface (m²) : 
+                        input(
+                            type="text"
+                            , name="surface"
+                            , class="formInput surface"
+                            )
+                    label(for="room") Nb de pièces : 
+                        input(
+                            type="text"
+                            , name="room"
+                            , class="formInput room"
+                            )
                 .infoForm
                     label(for="infosAdress") Informations complémentaires : 
                     textarea(

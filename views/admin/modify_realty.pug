@@ -1,0 +1,116 @@
+extends layout_admin
+
+block content
+    h2 🏠/  Les biens
+
+    .headRealty
+        h3 Modifier le bien
+        .realtyListButton 
+            a(class=cancel, href="/admin/realtyList") Annuler
+    
+    .contentForm 
+            
+        form.form_realty(action="/admin/modifyRealty/" + realty._id, method="post")
+            .form1 Adresse du bien
+                //- legend Adresse du bien
+                .sellerName
+                    label(for="seller") Nom du vendeur: 
+                    input(
+                        type="text"
+                        , name="seller"
+                        , class="formInput seller"
+                        , value= realty.realtyAdress.sellerName
+                        )
+                .adressForm
+                    label(for="adress") Adresse du bien : 
+                    input(
+                        type="text"
+                        , name="adress"
+                        , class="formInput adress"
+                        , value= realty.realtyAdress.adress
+                        )
+                .postalCodeForm
+                    label(for="postalCode") Code postal : 
+                    input(
+                        type="number"
+                        , name="postalCode"
+                        , class="formInput postalCode"
+                        , value= realty.realtyAdress.postalCode
+                        )
+                .cityForm 
+                    label(for="city") Ville : 
+                    input(
+                        type="text"
+                        , name="city"
+                        , class="formInput city"
+                        , value= realty.realtyAdress.city
+                        )
+                .realtyDescription 
+                    label(for="surface") Surface (m²) : 
+                        input(
+                            type="text"
+                            , name="surface"
+                            , class="formInput surface"
+                            , value= realty.realtyAdress.surface
+                            )
+                    label(for="room") Nb de pièces : 
+                        input(
+                            type="text"
+                            , name="room"
+                            , class="formInput room"
+                            , value= realty.realtyAdress.room
+                            )
+                .infoForm
+                    label(for="infosAdress") Informations complémentaires : 
+                    textarea(
+                        name="infosAdress"
+                        , class="texteArea infos"
+                        , cols="30"
+                        , rows="10"
+                        , value= realty.realtyAdress.infosAdress
+                        )
+            .form2 Contact du bien
+                //- legend 
+                .lastNameForm
+                    label(for="contactName") Nom: 
+                    input(
+                        type="text"
+                        , name="contactName"
+                        , class="formInput contactName"
+                        , value= realty.contact.nom
+                        )
+                .firstNameForm
+                    label(for="contactFirstName") Prénom : 
+                    input(
+                        type="text"
+                        , name="contactFirstName"
+                        , class="formInput contactFirstName"
+                        , value= realty.contact.prenom
+                        )
+                .emailForm
+                    label(for="mail") Email: 
+                    input(
+                        type="email"
+                        , name="mail"
+                        , class="formInput mail"
+                        , value= realty.contact.email
+                        )
+                .phoneForm 
+                    label(for="phoneNumber") Téléphone : 
+                    input(
+                        type="tel"
+                        , name="phoneNumber"
+                        , class="formInput phoneNumber"
+                        , value= realty.contact.phone
+                        )
+                .infoForm
+                    label(for="infosContact") Informations complémentaires : 
+                    textarea(
+                        name="infosContact"
+                        , class="texteArea info2"
+                        , cols="30"
+                        , rows="10"
+                        , value= realty.contact.infosContact
+                        )  
+                .checked
+                    input(type="submit",class='formInput check' value="Enregistrer") 

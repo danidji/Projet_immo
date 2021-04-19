@@ -77,16 +77,27 @@ module.exports = (app) => {
         res.redirect('/')
     });
 
+
+    let repoRealtyList = new Realty_list();
+
     // routes vers la liste des biens 
     app.get('/admin/realtyList', (req, res) => {
 
 
-        (new Realty_list()).printRealty(req, res);
+        repoRealtyList.printRealty(req, res);
     })
 
     // routes pour supprimer un bien 
     app.get('/admin/realtyList/delete/:id', (req, res) => {
-        (new Realty_list()).deleteRealty(req, res);
+        repoRealtyList.deleteRealty(req, res);
+    })
+    //route pour accéder au formulaire de modification d'un bien
+    app.get('/admin/realtyList/modify/:id', (req, res) => {
+        repoRealtyList.printModifyForm(req, res)
     })
 
+    // gestion du formulaire de modification des biens
+    app.post('/admin/modifyRealty/:id', (req, res) => {
+        repoRealtyList.updateForm(req, res);
+    })
 };

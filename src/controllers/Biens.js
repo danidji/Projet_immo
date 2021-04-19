@@ -9,12 +9,15 @@ module.exports = class Biens {
     }
 
     processForm(req, res) {
-        // console.log(req.body);
+        console.log(req.body);
 
         let realtyAdress = {
-            adress: req.body.adress
+            sellerName: req.body.seller
+            , adress: req.body.adress
             , postalCode: req.body.postalCode
             , city: req.body.city
+            , surface: req.body.surface
+            , room: req.body.room
             , infosAdress: req.body.infoAdress
         };
         let contact = {

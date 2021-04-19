@@ -5,9 +5,12 @@ require('../bdd/database')();
 //Schéma de données propres aux biens 
 const realtySchema = mongoose.Schema({
     realtyAdress: {
-        adress: { type: String }
+        sellerName: { type: String }
+        , adress: { type: String }
         , postalCode: { type: Number }
         , city: { type: String }
+        , surface: { type: String }
+        , room: { type: Number }
         , infosAdress: { type: String }
     }
     , contact: {

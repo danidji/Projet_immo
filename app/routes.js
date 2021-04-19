@@ -68,4 +68,11 @@ module.exports = (app) => {
         res.redirect('/')
     });
 
+    // routes vers la liste des biens 
+    app.get('/realtyList', (req, res) => {
+        let Realty_list = require('../src/controllers/Realty_list');
+
+        (new Realty_list()).print(req, res);
+    })
+
 };

@@ -1,0 +1,30 @@
+extends layout_admin
+
+block content
+    h2 🏠/  Les biens
+
+    .headRealty
+        h3 Liste des biens
+        .realtyListButton 
+            a(class=realtyList, href="#") Enregistrer un bien
+        //- button.realtyList Listes des biens
+
+    .contentList
+        table 
+            thead 
+                tr 
+                    th Vendeur
+                    th Adresse
+                    th Code postal / Ville
+                    th Surface en m²
+                    th Nb de pièces
+            tbody
+                tr
+                    each val in realtyList
+                        td= val.realtyAdress.sellerName 
+                        td= val.realtyAdress.adress 
+                        td= val.realtyAdress.postalCode+ ' ' +val.realtyAdress.city 
+                        td= val.realtyAdress.surface 
+                        td= val.realtyAdress.room
+
+                        //- td #{val.realtyAdress.postalCode} #{val.realtyAdress.city} 

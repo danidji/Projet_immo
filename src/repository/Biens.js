@@ -41,9 +41,10 @@ module.exports = class Realty {
         // console.log(realtyData)
         let status = true;
         this.db.create(realtyData, (err) => {
+            console.log('élément ajouté à la bdd');
             if (err) status = false;
         });
-        // console.log(status)
+        console.log(status)
         return status;
     }
     findAllRealty() {
@@ -55,12 +56,30 @@ module.exports = class Realty {
 
         });
     }
+    findOneRealty(id) {
+        return new Promise((resolve, reject) => {
+            this.db.findOne({ _id: id }, (err, doc) => {
+                if (err) reject(err);
+                resolve(doc);
+            });
+        });
+    }
     deleteOne(id) {
         return new Promise((resolve, reject) => {
             this.db.deleteOne({ _id: id }, (err) => {
+                console.log('élément supprimé');
                 if (err) reject(err)
-                resolve(err)
             })
+        })
+    }
+    updateOne(id, obj) {
+        return new Promise((resolve, reject) => {
+            this.db.updateOne({ _id: id }
+                , obj
+                , (err) => {
+                    console.log('élément modifié')
+                    if (err) reject(err)
+                })
         })
     }
 }

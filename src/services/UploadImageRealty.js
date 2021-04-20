@@ -6,7 +6,7 @@ module.exports = class UploadImageRealty {
             const regex = /[^a-z0-9_]/i;
             let baseName = file.name.replace(regex, '_').replace('__', '_');
             let uploadPath = config.directory_product_image + id_product + '/' + baseName;
-            file.mv(uploadPath, (err) => resolve(true));
+            file.mv(uploadPath, (err) => resolve(true)); // d'ou vient file.mv ? 
         });
     }
 }

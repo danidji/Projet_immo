@@ -42,7 +42,7 @@ module.exports = class Biens {
             if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
 
                 Object.values(req.files.photos).forEach(file => {
-                    photos.push(UploadImageRealty.moveFile(file, idProduct));
+                    photos.push(UploadImageRealty.moveFile(file, idProduct)); //=> d'ou vient le idProduct
                 });
             }
         }

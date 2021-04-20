@@ -69,9 +69,10 @@ block content
                     textarea(
                         name="infosAdress"
                         , class="texteArea infos"
-                        , cols="30"
-                        , rows="10"
                         )
+                
+
+
             .form2 Contact du bien
                 //- legend 
                 .lastNameForm
@@ -107,8 +108,13 @@ block content
                     textarea(
                         name="infosContact"
                         , class="texteArea info2"
-                        , cols="30"
-                        , rows="10"
-                        )  
+                        ) 
+                //- emplacement dedrag and drop 
+                .lcUpload__block 
+                    .lcUpload__input
+                        input.lcUpload__file(type="file" name="files[]" id="file" data-multiple-caption="{count} fichiers sélectionnés" multiple)
+                        label(for="file")
+                            strong Charger des images
+                            span.lcUpload__dragndrop  ou glissez les ici
                 .checked
                     input(type="submit",class='formInput check' value="Enregistrer") 

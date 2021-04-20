@@ -5,10 +5,19 @@ block content
 
     .headRealty
         h3 Liste des biens
-        .realtyListButton 
-            a(class=realtyList, href="/admin/biens") Enregistrer un bien
+        .adminButton.realtyList
+            a(href="/admin/biens") Enregistrer un bien
 
     .contentList
+        .flash_msg 
+            - var messages = getMessages()
+                if messages.notify
+                    each msg in messages.notify
+                        .alert.alert-info= msg
+                if messages.error
+                    each msg in messages.error
+                        .alert.alert-danger= msg
+
         table 
             thead 
                 tr 

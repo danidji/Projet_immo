@@ -5,11 +5,20 @@ block content
 
     .headRealty
         h3 Modifier le bien
-        .realtyListButton 
-            a(class=cancel, href="/admin/realtyList") Annuler
+        .adminButton.cancel
+            a( href="/admin/realtyList") Annuler
     
     .contentForm 
-            
+    
+        .flash_msg 
+            - var messages = getMessages()
+                if messages.notify
+                    each msg in messages.notify
+                        .alert.alert-info= msg
+                if messages.error
+                    each msg in messages.error
+                        .alert.alert-danger= msg
+
         form.form_realty(action="/admin/modifyRealty/" + realty._id, method="post")
             .form1 Adresse du bien
                 //- legend Adresse du bien

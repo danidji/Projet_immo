@@ -35,9 +35,10 @@ module.exports = class Login {
                 // on stocke les données utilsateur en session
                 req.session.users = verifMail;
                 console.log('----login.js----');
-                console.log(req.session);
+                // console.log(req.session);
                 console.log(res.locals);
-                res.redirect('/');
+                // res.redirect('/');
+                res.redirect(`/accueil/${verifMail.slug}`);
             } else {
 
                 req.flash('error', 'Le mot de passe est incorrect');

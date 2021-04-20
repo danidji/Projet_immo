@@ -29,6 +29,20 @@ body
     background-color: $second-admin-color
     .userData
         @include getSize(100%,30%)
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        .photo
+            width: 100px
+            height: 100px
+            border-radius: 50px
+            background-color: #fff
+            border: 2px black solid
+        .name
+            font-size: 1.2em
+        .status
+            font-size: 0.8em
 
     .menu_admin
         @include getSize(100%,70%)
@@ -152,6 +166,11 @@ body
                 text-align: center
                 line-height: 30px
                 border-radius: 5px
+                &:hover
+                    height: 32px
+                    width: 32px
+                    transition: 0.2s ease
+                    line-height: 32px
         .delete
             a
                 background-color: $first-color

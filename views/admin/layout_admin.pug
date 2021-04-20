@@ -16,8 +16,8 @@ html
         .sideBar_admin
           .userData 
               .photo 
-              .name Jean Pierre
-              .status online 
+              .name #{session.prenom} #{session.nom}
+              .status 🟢 online 
           .menu_admin 
               ul
                 each val in [{lien:'/admin/dashboard',text:'🖥️ Dashboard'},{lien:'/admin/realtyList',text:'🏠 Biens'},{lien:'#',text:'👥 Contact'},{lien:'/admin/logout_admin',text:'📴 Logout'}]

@@ -31,8 +31,10 @@ module.exports = class Biens {
         // console.log(realtyAdress)
         let repo = new Realty();
 
-        repo.add({ realtyAdress, contact })
-
-        res.redirect('/admin/realtyList');
+        repo.add({ realtyAdress, contact }
+        ).then(() => {
+            req.flash('notify', 'Bien ajouté à la base');
+            res.redirect('/admin/realtyList');
+        });
     }
 };

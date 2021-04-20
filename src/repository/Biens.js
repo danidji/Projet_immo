@@ -38,15 +38,17 @@ module.exports = class Realty {
 
     //Methode d'ajout d'un bien immo
     add(realtyData) {
-        // console.log(realtyData)
-        let status = true;
-        this.db.create(realtyData, (err) => {
-            console.log('élément ajouté à la bdd');
-            if (err) status = false;
-        });
-        console.log(status)
-        return status;
+        return new Promise((resolve, reject) => {
+            // console.log(realtyData)
+            let status = true;
+            this.db.create(realtyData, (err) => {
+                console.log('élément ajouté à la bdd');
+                if (err) status = false;
+            });
+            // console.log(status)
+        })
     }
+
     findAllRealty() {
         return new Promise((resolve, reject) => {
             this.db.find({}, (err, docs) => {
@@ -72,6 +74,9 @@ module.exports = class Realty {
             })
         })
     }
+
+
+
     updateOne(id, obj) {
         return new Promise((resolve, reject) => {
             this.db.updateOne({ _id: id }

@@ -4,38 +4,40 @@ let repo = new Realty()
 module.exports = class Biens {
     printRealty(req, res) {
 
-        repo.findAllRealty().then((result) => {
-            // console.log(result)
-            // console.log(result[0]._id)
+        repo.findAllRealty()
+            .then((result) => {
+                // console.log(result)
+                // console.log(result[0]._id)
 
-            res.render('admin/realtyList', {
-                title: 'TeLoger'
-                , session: res.locals.session //=> remettre .users en dehors du dev admin
-                , realtyList: result
-            });
-        })
+                res.render('admin/realtyList', {
+                    title: 'TeLoger'
+                    , session: res.locals.session //=> remettre .users en dehors du dev admin
+                    , realtyList: result
+                });
+            })
 
     }
     deleteRealty(req, res) {
-        repo.deleteOne(req.params.id).then(
-
-            res.redirect('/admin/realtyList')
-
-        ).catch((err) => {
-            console.error(err.message)
-        })
+        repo.deleteOne(req.params.id)
+            .then(() => {
+                req.flash('notify', 'Bien supprimé');
+                res.redirect('/admin/realtyList');
+            })
+            .catch((err) => {
+                console.error(err.message)
+            })
     }
     printModifyForm(req, res) {
-        repo.findOneRealty(req.params.id).then((result) => {
-            // console.log(result)
+        repo.findOneRealty(req.params.id)
+            .then((result) => {
+                // console.log(result)
+                res.render('admin/modify_realty', {
+                    title: 'TeLoger'
+                    , session: res.locals.session //=> remettre .users en dehors du dev admin
+                    , realty: result
+                });
 
-            res.render('admin/modify_realty', {
-                title: 'TeLoger'
-                , session: res.locals.session //=> remettre .users en dehors du dev admin
-                , realty: result
-            });
-
-        })
+            })
     }
     updateForm(req, res) {
         // console.log(req.body)
@@ -61,11 +63,13 @@ module.exports = class Biens {
         // console.log(updateData);
 
 
-        repo.updateOne(req.params.id, updateData).then(
-            res.redirect('/admin/realtyList')
-        ).catch((err) => {
-            console.error(err.message)
-        });
+        repo.updateOne(req.params.id, updateData)
+            .then(() => {
+                res.redirect('/admin/realtyList')
+            })
+            .catch((err) => {
+                console.error(err.message)
+            });
 
     }
 }

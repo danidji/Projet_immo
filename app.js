@@ -6,12 +6,7 @@ var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 const config = require('./app/config')
 const bodyParser = require('body-parser');
-// console.log(bodyParser)
 
-//database connection
-// const mongoose = require('mongoose');
-
-// require('./bdd/database')(mongoose)
 
 
 var app = express();
@@ -68,11 +63,11 @@ app.use((req, res, next) => {
   //dev admin session
   // res.locals.session = config.userDevAdmin;
 
-  if (res.locals.session !== undefined) {
-    console.log('---app.js---');
-    console.log(res.locals.session)
-    // console.log(res.locals)
-  }
+  // if (res.locals.session !== undefined) {
+  //   console.log('---app.js---');
+  //   console.log(res.locals.session)
+  //   // console.log(res.locals)
+  // }
 
   next();
 });

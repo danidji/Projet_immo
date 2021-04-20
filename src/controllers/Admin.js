@@ -4,7 +4,6 @@ module.exports = class Admin {
         console.log(res.locals.session)
         res.render('admin/dashboard', {
             title: 'TeLoger'
-            , session: res.locals.session.users //=> remmettre .users en dehors du dev admin
         });
     }
 };

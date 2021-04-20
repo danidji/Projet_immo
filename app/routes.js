@@ -11,63 +11,63 @@ let Realty_list = require('../src/controllers/Realty_list');
 
 module.exports = (app) => {
 
-    // route vers l'accueil
+    ///// routes vers l'accueil
     app.get('/', (req, res) => {
-
         (new Home()).print(req, res);
 
     });
+    app.get('/accueil/:slug', (req, res) => {
+        (new Home()).print(req, res);
+    })
 
-    // route vers la page d'inscription
+    // routes vers la page d'inscription
     app.get('/register', (req, res) => {
-
         (new Register()).printForm(req, res);
 
     });
 
     // gestion du formulaire post inscription
     app.post('/inscription', (req, res) => {
-
         (new Register()).processForm(req, res);
 
     });
 
     // Création d'une route vers la page de connexion
     app.get('/login', (req, res) => {
-
         (new Login()).printLogin(req, res);
 
     });
 
     // gestion du formulaire post connexion
     app.post('/connexion', (req, res) => {
-
         (new Login()).processLogin(req, res);
     })
     //route de déconnexion utilisateur
     app.get('/logout', (req, res) => {
-
         (new Logout()).quitSession(req, res);
 
     });
 
+    /////////
+    // 
+    // Gestion des routes de la page admin
+    // 
+    /////////
+
     // route vers la page admin
     app.get('/admin/dashboard', (req, res) => {
-
         (new Admin()).print(req, res);
 
     });
 
     // route vers la page biens
     app.get('/admin/biens', (req, res) => {
-
         (new Biens()).print(req, res);
 
     });
 
     // gestion du formulaire des biens immo
     app.post('/admin/biensImmo', (req, res) => {
-
         (new Biens()).processForm(req, res);
 
     });
@@ -77,13 +77,10 @@ module.exports = (app) => {
         res.redirect('/')
     });
 
-
     let repoRealtyList = new Realty_list();
 
     // routes vers la liste des biens 
     app.get('/admin/realtyList', (req, res) => {
-
-
         repoRealtyList.printRealty(req, res);
     })
 

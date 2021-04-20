@@ -66,11 +66,17 @@ module.exports = (app) => {
 
     });
 
-    // gestion du formulaire des biens immo
-    app.post('/admin/biensImmo', (req, res) => {
-        (new Biens()).processForm(req, res);
+    //utilisation d'express-fileupload pour le téléchargement de fichier : https://www.npmjs.com/package/express-fileupload
+    //                                                                   : https://github.com/richardgirges/express-fileupload/tree/master/example
 
-    });
+
+    // gestion du formulaire des biens immo
+    app.post('/admin/biensImmo'
+        , require('express-fileupload')({ createParentPath: true })
+        , (req, res) => {
+            (new Biens()).processForm(req, res);
+
+        });
 
     //route de deconnexion admin 
     app.get('/admin/logout_admin', (req, res) => {

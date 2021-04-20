@@ -1,4 +1,5 @@
 let Realty = require('../repository/Biens')
+let UploadImageRealtyService = require('../services/UploadImageRealty')
 
 module.exports = class Biens {
     print(req, res) {
@@ -31,10 +32,28 @@ module.exports = class Biens {
         // console.log(realtyAdress)
         let repo = new Realty();
 
-        repo.add({ realtyAdress, contact }
-        ).then(() => {
-            req.flash('notify', 'Bien ajouté à la base');
-            res.redirect('/admin/realtyList');
-        });
+        // gestion du chargement des images : 
+        // WIP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        let photos = [];
+        // Enregistrement des images
+        if (typeof req.files != 'undefined' && req.files != null) {
+            const UploadImageRealty = new UploadImageRealtyService();
+            if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+
+                Object.values(req.files.photos).forEach(file => {
+                    photos.push(UploadImageRealty.moveFile(file, idProduct));
+                });
+            }
+        }
+        Promise.all(photos)
+
+            .then(() => {
+                repo.add({ realtyAdress, contact })
+            })
+            .then(() => {
+                req.flash('notify', 'Bien ajouté à la base');
+                res.redirect('/admin/realtyList');
+            });
     }
 };

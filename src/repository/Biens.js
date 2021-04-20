@@ -75,8 +75,6 @@ module.exports = class Realty {
         })
     }
 
-
-
     updateOne(id, obj) {
         return new Promise((resolve, reject) => {
             this.db.updateOne({ _id: id }

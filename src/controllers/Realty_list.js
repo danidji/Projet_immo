@@ -27,6 +27,7 @@ module.exports = class Biens {
                 console.error(err.message)
             })
     }
+
     printModifyForm(req, res) {
         repo.findOneRealty(req.params.id)
             .then((result) => {
@@ -65,6 +66,7 @@ module.exports = class Biens {
 
         repo.updateOne(req.params.id, updateData)
             .then(() => {
+                req.flash('notify', 'élément modifié !!')
                 res.redirect('/admin/realtyList')
             })
             .catch((err) => {

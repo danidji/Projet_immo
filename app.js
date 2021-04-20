@@ -54,29 +54,32 @@ app.use(session({
 }));
 //----------
 
+//Ajout du middleware flash pour la gestion des messages flash
+const flash = require('express-flash-messages');
+app.use(flash());
+
+
+
 // permet d'envoyer des variables à toutes les vues
 app.use((req, res, next) => {
   // console.log(res.locals)
-  res.locals.session = req.session.users;
+  res.locals.session = req.session;
 
   //dev admin session
   // res.locals.session = config.userDevAdmin;
 
   if (res.locals.session !== undefined) {
-    // console.log(res.locals.session)
+    console.log('---app.js---');
+    console.log(res.locals.session)
     // console.log(res.locals)
   }
 
   next();
 });
 
-
-//Ajout du middleware flash pour la gestion des messages flash
-const flash = require('express-flash-messages');
-app.use(flash());
-
 //gestion des routes
 require('./app/routes')(app);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

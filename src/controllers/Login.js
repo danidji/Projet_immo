@@ -4,7 +4,9 @@ let bcrypt = require('bcryptjs');
 
 module.exports = class Login {
     printLogin(req, res) {
-        res.render('login', { title: 'TeLoger' });
+        res.render('login', {
+            title: 'TeLoger'
+        });
     }
 
     async processLogin(req, res) {
@@ -32,7 +34,9 @@ module.exports = class Login {
                 req.flash('notify', 'Vous êtes connecté !');
                 // on stocke les données utilsateur en session
                 req.session.users = verifMail;
-
+                console.log('----login.js----');
+                console.log(req.session);
+                console.log(res.locals);
                 res.redirect('/');
             } else {
 

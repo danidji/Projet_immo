@@ -8,7 +8,7 @@ module.exports = class Register {
         res.render('register',
             {
                 title: 'TeLoger'
-                , session: res.locals.session //=> remettre .users en dehors du dev admin
+
             });
     }
 

@@ -1,12 +1,11 @@
 module.exports = class Logout {
     quitSession(req, res) {
-
+        // on vide l'objet session.user
         req.session.users = null;
         // console.log(res.locals.session);
-
-        res.render('home', {
-            title: 'TeLoger'
-            , session: res.locals.session.users //=> remmettre .users en dehors du dev admin
-        });
+        console.log('---logout.js---');
+        console.log(req.session);
+        console.log(res.locals);
+        res.redirect('/');
     }
 };

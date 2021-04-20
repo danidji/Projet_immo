@@ -10,3 +10,6 @@ npm install express-generator -g
  ```Bash
  express --view=pug --css=sass --git
  ```
+ ## To-do 
+
+ - Insertion de photo avec drag and drop

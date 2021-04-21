@@ -17,7 +17,7 @@ module.exports = class Biens {
 
     }
     deleteRealty(req, res) {
-        console.log('controler delete');
+        // console.log('controler delete');
         repo.deleteOneRealty(req.params.id)
             .then(() => {
                 req.flash('notify', 'Bien supprimé');

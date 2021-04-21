@@ -74,6 +74,8 @@ module.exports = (app) => {
     app.post('/admin/biensImmo'
         , require('express-fileupload')({ createParentPath: true })
         , (req, res) => {
+            // console.log('Voici ma route !!!!!!!!!');
+            // console.log(req.files);
             (new Biens()).processForm(req, res);
 
         });
@@ -92,7 +94,7 @@ module.exports = (app) => {
 
     // routes pour supprimer un bien 
     app.get('/admin/realtyList/delete/:id', (req, res) => {
-        console.log('route delete');
+        // console.log('route delete');
         repoRealtyList.deleteRealty(req, res);
     })
     //route pour accéder au formulaire de modification d'un bien

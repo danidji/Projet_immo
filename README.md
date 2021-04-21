@@ -12,4 +12,6 @@ npm install express-generator -g
  ```
  ## To-do 
 
- - Insertion de photo avec drag and drop
+ - Faire l'affichage des images sur le navigateur
+ - Mettre en place un carrousel d'images
+ - Rajouter une fonction qui supprimer les images dans le dossier serveur lors de la suppression d'un bien

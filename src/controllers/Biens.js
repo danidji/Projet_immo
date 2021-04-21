@@ -37,7 +37,7 @@ module.exports = class Biens {
 
 
 
-        repo.add({ realtyAdress, contact }).then((result_id) => {
+        repo.add({ realtyAdress, contact }).then((idRealty) => {
             // Enregistrement des images
             let photos = [];
 
@@ -46,25 +46,27 @@ module.exports = class Biens {
 
                 const UploadImageRealty = new UploadImageRealtyService();
 
-                // console.log('req.files.photos :');
-                // console.log(typeof (req.files.photos));
-
                 // Si je ne charge qu'une photo
-                if (typeof (req.files.photos) === 'object') {
-                    photos.push(UploadImageRealty.moveFile(req.files.photos));
+                if (typeof req.files.photos[0] === 'undefined') {
+                    //je stocke mon image dans un tableau
+                    let img = req.files.photos;
+                    req.files.photos = new Array();
+                    req.files.photos.push(img);
                 }
-                // ou si j'en charge plusieurs
-                else if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+                //Si mon tableau contient des données
+                if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+                    // console.log(typeof (req.files.photos));
                     // console.log('req.files.photos :');
                     // console.log(req.files.photos);
 
-                    // console.log(Object.values(req.files.photos))
+                    //Je rajoute ma promesse de déplacement des photos upload
                     Object.values(req.files.photos).forEach(file => {
-                        photos.push(UploadImageRealty.moveFile(file));
+                        photos.push(UploadImageRealty.moveFile(file, idRealty));
                     });
                 }
             }
             // console.log(photos)
+            //J'exécute mes déplacement de photo
             Promise.all(photos)
         }).then(() => {
             req.flash('notify', 'Le bien a été ajouté à la base');

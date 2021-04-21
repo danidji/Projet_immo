@@ -75,3 +75,4 @@ package-lock.json
 
 #Exclusion des images 
 /public/images/
+/test/*

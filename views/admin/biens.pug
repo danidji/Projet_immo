@@ -20,7 +20,7 @@ block content
                     each msg in messages.error
                         .alert.alert-danger= msg
 
-        form.form_realty(action="/admin/biensImmo", method="post")
+        form.form_realty(action="/admin/biensImmo", method="post", enctype="multipart/form-data")
             .form1 Adresse du bien
                 //- legend Adresse du bien
                 .sellerName
@@ -109,10 +109,10 @@ block content
                         name="infosContact"
                         , class="texteArea info2"
                         ) 
-                //- emplacement dedrag and drop 
+                //- emplacement de drag and drop 
                 .lcUpload__block 
                     .lcUpload__input
-                        input.lcUpload__file(type="file" name="files[]" id="file" data-multiple-caption="{count} fichiers sélectionnés" multiple)
+                        input.lcUpload__file(type="file" name="photos" id="file" data-multiple-caption="{count} fichiers sélectionnés" multiple)
                         label(for="file")
                             strong Charger des images
                             span.lcUpload__dragndrop  ou glissez les ici

@@ -1,11 +1,16 @@
 const config = require('../../app/config.js');
 
 module.exports = class UploadImageRealty {
-    moveFile(file, id_product) {
+    moveFile(file) {
         return new Promise((resolve, reject) => {
             const regex = /[^a-z0-9_]/i;
             let baseName = file.name.replace(regex, '_').replace('__', '_');
-            let uploadPath = config.directory_product_image + id_product + '/' + baseName;
+            let uploadPath = config.directory_product_image + '/' + baseName;
+
+            // console.log('uploadPath :');
+            console.log('uploadPath :', uploadPath);
+            console.log('baseName :', baseName);
+
             file.mv(uploadPath, (err) => resolve(true)); // d'ou vient file.mv ? 
         });
     }

@@ -9,6 +9,7 @@ module.exports = class Biens {
     }
 
     processForm(req, res) {
+        // console.log('req.body');
         // console.log(req.body);
 
         let realtyAdress = {
@@ -28,45 +29,48 @@ module.exports = class Biens {
             , infosContact: req.body.infosContact
         };
 
-        // console.log(realtyAdress)
+
         let repo = new Realty();
 
         // gestion du chargement des images : 
 
+
+
+
         repo.add({ realtyAdress, contact }).then((result_id) => {
-            console.log('controllers biens.js');
-            // console.log(result_id)
-
-
-            let photos = [];
             // Enregistrement des images
-            console.log(req.files)
+            let photos = [];
 
-
+            //Si mon obj req.files n'est pas vide (alors j'ai bien des fichiers d'upload)
             if (typeof req.files != 'undefined' && req.files != null) {
+
                 const UploadImageRealty = new UploadImageRealtyService();
 
+                // console.log('req.files.photos :');
+                // console.log(typeof (req.files.photos));
 
-                if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+                // Si je ne charge qu'une photo
+                if (typeof (req.files.photos) === 'object') {
+                    photos.push(UploadImageRealty.moveFile(req.files.photos));
+                }
+                // ou si j'en charge plusieurs
+                else if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+                    // console.log('req.files.photos :');
+                    // console.log(req.files.photos);
 
+                    // console.log(Object.values(req.files.photos))
                     Object.values(req.files.photos).forEach(file => {
-                        photos.push(UploadImageRealty.moveFile(file, result_id));
+                        photos.push(UploadImageRealty.moveFile(file));
                     });
                 }
-
             }
-            console.log(photos)
+            // console.log(photos)
             Promise.all(photos)
         }).then(() => {
-            req.flash('notify', 'Bien ajouté à la base');
+            req.flash('notify', 'Le bien a été ajouté à la base');
             res.redirect('/admin/realtyList');
         });
 
-        // // sans l'ajout des photos
-        // repo.add({ realtyAdress, contact }).then(() => {
-        //     req.flash('notify', 'Bien ajouté à la base');
-        //     res.redirect('/admin/realtyList');
-        // });
 
     }
 };

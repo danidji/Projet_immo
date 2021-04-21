@@ -72,3 +72,6 @@ package-lock.json
 
 #Exclusion du fichier de config : 
 /app/config.js
+
+#Exclusion des images 
+/public/images/

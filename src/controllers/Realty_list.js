@@ -11,14 +11,14 @@ module.exports = class Biens {
 
                 res.render('admin/realtyList', {
                     title: 'TeLoger'
-                    , session: res.locals.session //=> remettre .users en dehors du dev admin
                     , realtyList: result
                 });
             })
 
     }
     deleteRealty(req, res) {
-        repo.deleteOne(req.params.id)
+        console.log('controler delete');
+        repo.deleteOneRealty(req.params.id)
             .then(() => {
                 req.flash('notify', 'Bien supprimé');
                 res.redirect('/admin/realtyList');
@@ -34,7 +34,6 @@ module.exports = class Biens {
                 // console.log(result)
                 res.render('admin/modify_realty', {
                     title: 'TeLoger'
-                    , session: res.locals.session //=> remettre .users en dehors du dev admin
                     , realty: result
                 });
 
@@ -64,7 +63,7 @@ module.exports = class Biens {
         // console.log(updateData);
 
 
-        repo.updateOne(req.params.id, updateData)
+        repo.updateOneRealty(req.params.id, updateData)
             .then(() => {
                 req.flash('notify', 'élément modifié !!')
                 res.redirect('/admin/realtyList')

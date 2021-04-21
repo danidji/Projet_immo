@@ -63,11 +63,11 @@ app.use((req, res, next) => {
   //dev admin session
   // res.locals.session = config.userDevAdmin;
 
-  // if (res.locals.session !== undefined) {
-  //   console.log('---app.js---');
-  //   console.log(res.locals.session)
-  //   // console.log(res.locals)
-  // }
+  if (res.locals.session !== undefined) {
+    console.log('---app.js---');
+    console.log(res.locals.session)
+    // console.log(res.locals)
+  }
 
   next();
 });

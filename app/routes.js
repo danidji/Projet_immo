@@ -92,6 +92,7 @@ module.exports = (app) => {
 
     // routes pour supprimer un bien 
     app.get('/admin/realtyList/delete/:id', (req, res) => {
+        console.log('route delete');
         repoRealtyList.deleteRealty(req, res);
     })
     //route pour accéder au formulaire de modification d'un bien

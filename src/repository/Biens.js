@@ -29,6 +29,7 @@ const realtySchema = mongoose.Schema({
         }
         , infosContact: { type: String }
     }
+    , url_images: { type: Array }
 }, { versionKey: false });
 
 module.exports = class Realty {

@@ -35,12 +35,12 @@ module.exports = class Biens {
         // gestion du chargement des images : 
 
 
+        let photos = [];
+        let photosPathName = []; //tableau contenant la liste des URL des images du bien
 
 
         repo.add({ realtyAdress, contact }).then((idRealty) => {
             // Enregistrement des images
-            let photos = [];
-
             //Si mon obj req.files n'est pas vide (alors j'ai bien des fichiers d'upload)
             if (typeof req.files != 'undefined' && req.files != null) {
 
@@ -61,11 +61,20 @@ module.exports = class Biens {
 
                     //Je rajoute ma promesse de déplacement des photos upload
                     Object.values(req.files.photos).forEach(file => {
-                        photos.push(UploadImageRealty.moveFile(file, idRealty));
+                        photos.push(UploadImageRealty.moveFile(file, idRealty, photosPathName));
                     });
+
+                    //On rajoute les url des images dans la bdd
+                    let objectPathImg = {
+                        url_images: photosPathName
+                    }
+                    repo.updateOneRealty(idRealty, objectPathImg)
+                    // console.log(objectPathImg)
+
                 }
             }
             // console.log(photos)
+
             //J'exécute mes déplacement de photo
             Promise.all(photos)
         }).then(() => {

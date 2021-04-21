@@ -5,7 +5,6 @@ module.exports = class Biens {
     print(req, res) {
         res.render('admin/biens', {
             title: 'TeLoger'
-            , session: res.locals.session //=> remettre .users en dehors du dev admin
         });
     }
 
@@ -33,27 +32,41 @@ module.exports = class Biens {
         let repo = new Realty();
 
         // gestion du chargement des images : 
-        // WIP!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        let photos = [];
-        // Enregistrement des images
-        if (typeof req.files != 'undefined' && req.files != null) {
-            const UploadImageRealty = new UploadImageRealtyService();
-            if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+        repo.add({ realtyAdress, contact }).then((result_id) => {
+            console.log('controllers biens.js');
+            // console.log(result_id)
 
-                Object.values(req.files.photos).forEach(file => {
-                    photos.push(UploadImageRealty.moveFile(file, idProduct)); //=> d'ou vient le idProduct
-                });
+
+            let photos = [];
+            // Enregistrement des images
+            console.log(req.files)
+
+
+            if (typeof req.files != 'undefined' && req.files != null) {
+                const UploadImageRealty = new UploadImageRealtyService();
+
+
+                if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+
+                    Object.values(req.files.photos).forEach(file => {
+                        photos.push(UploadImageRealty.moveFile(file, result_id));
+                    });
+                }
+
             }
-        }
-        Promise.all(photos)
+            console.log(photos)
+            Promise.all(photos)
+        }).then(() => {
+            req.flash('notify', 'Bien ajouté à la base');
+            res.redirect('/admin/realtyList');
+        });
 
-            .then(() => {
-                repo.add({ realtyAdress, contact })
-            })
-            .then(() => {
-                req.flash('notify', 'Bien ajouté à la base');
-                res.redirect('/admin/realtyList');
-            });
+        // // sans l'ajout des photos
+        // repo.add({ realtyAdress, contact }).then(() => {
+        //     req.flash('notify', 'Bien ajouté à la base');
+        //     res.redirect('/admin/realtyList');
+        // });
+
     }
 };

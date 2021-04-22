@@ -1,4 +1,21 @@
 extends layout
 
 block content
-  h1 Welcome to #{title} 
+
+  .home_container 
+    h1 Nos biens immobiliers :
+    ul.realty_contents 
+      li.product_realty 
+        .head_realty
+          h3 Nom du vendeur 
+          .price Price 
+        .image
+          img(src='#')
+        .info_realty 
+          p.type_realty Type de bien 
+          p.location Adresse 
+          p.infos Infos complémentaires
+    
+
+
+

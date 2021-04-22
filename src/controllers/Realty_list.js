@@ -1,5 +1,6 @@
 let Realty = require('../repository/Biens')
 let repo = new Realty()
+let UploadImageRealtyService = require('../services/UploadImageRealty')
 
 module.exports = class Biens {
     printRealty(req, res) {
@@ -31,7 +32,7 @@ module.exports = class Biens {
     printModifyForm(req, res) {
         repo.findOneRealty(req.params.id)
             .then((result) => {
-                // console.log(result)
+                console.log(result)
                 res.render('admin/modify_realty', {
                     title: 'TeLoger'
                     , realty: result
@@ -40,6 +41,7 @@ module.exports = class Biens {
             })
     }
     updateForm(req, res) {
+        // console.log('req.body');
         // console.log(req.body)
         let updateData = {
             realtyAdress: {
@@ -60,17 +62,79 @@ module.exports = class Biens {
             }
         }
         // console.log(req.params.id)
+        // console.log('--realty_list----');
         // console.log(updateData);
 
+        let photosPathName = [];
+        let photos = [];
+        // Enregistrement des images
+        //Si mon obj req.files n'est pas vide (alors j'ai bien des fichiers d'upload)
+        if (typeof req.files != 'undefined' && req.files != null) {
 
-        repo.updateOneRealty(req.params.id, updateData)
-            .then(() => {
-                req.flash('notify', 'élément modifié !!')
-                res.redirect('/admin/realtyList')
+            const UploadImageRealty = new UploadImageRealtyService();
+
+            // Si je ne charge qu'une photo
+            if (typeof req.files.photos[0] === 'undefined') {
+                //je stocke mon image dans un tableau
+                let img = req.files.photos;
+                req.files.photos = new Array();
+                req.files.photos.push(img);
+            }
+            //Si mon tableau contient des données
+            if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
+                // console.log(typeof (req.files.photos));
+                // console.log('req.files.photos :');
+                // console.log(req.files.photos);
+
+                //Je rajoute ma promesse de déplacement des photos upload
+                Object.values(req.files.photos).forEach(file => {
+                    photos.push(UploadImageRealty.moveFile(file, req.params.id, photosPathName));
+                });
+
+
+            }
+        }
+        //On rajoute les url des images dans la bdd
+
+        // console.log('--realty_list----');
+        // console.log(updateData);
+        // //J'exécute mes déplacements de photo
+        Promise.all(photos);
+
+        //je récupère mon tableau de lien enregistré en bdd
+        repo.findOneRealty(req.params.id).then((result) => {
+            console.log('Old Url_images :', result.url_images);
+            console.log('photosPathName : ', photosPathName);
+            //je compare mon nouveau tableau avec l'initial
+            let verif = false;
+            photosPathName.forEach(url => {
+                verif = false
+                // si une url n'est pas présente je la rajoute à la bdd    
+                for (let i in result.url_images) {
+                    if (url === result.url_images[i]) {
+                        verif = true;
+                    }
+                }
+                if (!verif) {
+                    result.url_images.push(url)
+                }
+                // console.log(`url : ${url} 
+                // présente : ${verif}`)
+
             })
-            .catch((err) => {
-                console.error(err.message)
-            });
+            // console.log('new tab :', result.url_images);
+
+            updateData.url_images = result.url_images;
+
+            repo.updateOneRealty(req.params.id, updateData)
+
+        }).then(() => {
+            req.flash('notify', 'élément modifié !!')
+            res.redirect('/admin/realtyList')
+
+        }).catch((err) => {
+            console.error(err.message)
+        });
 
     }
 }

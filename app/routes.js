@@ -103,7 +103,9 @@ module.exports = (app) => {
     })
 
     // gestion du formulaire de modification des biens
-    app.post('/admin/modifyRealty/:id', (req, res) => {
-        repoRealtyList.updateForm(req, res);
-    })
+    app.post('/admin/modifyRealty/:id'
+        , require('express-fileupload')({ createParentPath: true })
+        , (req, res) => {
+            repoRealtyList.updateForm(req, res);
+        })
 };

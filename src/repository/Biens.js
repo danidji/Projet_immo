@@ -41,14 +41,12 @@ module.exports = class Realty {
     add(realtyData) {
         return new Promise((resolve, reject) => {
             // console.log(realtyData)
-            let status = true;
             this.db.create(realtyData, (err, doc) => {
                 console.log('élément ajouté à la bdd');
-                if (err) status = false;
-                // console.log(doc._id)
-                resolve(doc._id)
+                if (err) reject(err)
+                console.log(doc)
+                resolve(doc)
             });
-            // console.log(status)
         })
     }
 

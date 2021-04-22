@@ -80,6 +80,11 @@ module.exports = class Biens {
         }).then(() => {
             req.flash('notify', 'Le bien a été ajouté à la base');
             res.redirect('/admin/realtyList');
+
+        }).catch((err) => {
+            console.error(err.message)
+            req.flash('error', "Le bien n'a pas été ajouté");
+            res.redirect('/admin/realtyList');
         });
 
 

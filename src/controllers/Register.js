@@ -5,7 +5,7 @@ let bcrypt = require('bcryptjs');
 module.exports = class Register {
     printForm(req, res) {
         // console.log(res.locals.session)
-        res.render('register',
+        res.render('authentification/register',
             {
                 title: 'TeLoger'
 

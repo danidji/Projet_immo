@@ -4,7 +4,7 @@ let bcrypt = require('bcryptjs');
 
 module.exports = class Login {
     printLogin(req, res) {
-        res.render('login', {
+        res.render('authentification/login', {
             title: 'TeLoger'
         });
     }

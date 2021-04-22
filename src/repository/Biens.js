@@ -63,6 +63,7 @@ module.exports = class Realty {
         return new Promise((resolve, reject) => {
             this.db.findOne({ _id: id }, (err, doc) => {
                 if (err) reject(err);
+                console.log('élément trouvé en base');
                 resolve(doc);
             });
         });

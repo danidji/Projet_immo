@@ -39,7 +39,8 @@ module.exports = class Biens {
         let photosPathName = []; //tableau contenant la liste des URL des images du bien
 
 
-        repo.add({ realtyAdress, contact }).then((idRealty) => {
+        repo.add({ realtyAdress, contact }).then((result) => {
+
             // Enregistrement des images
             //Si mon obj req.files n'est pas vide (alors j'ai bien des fichiers d'upload)
             if (typeof req.files != 'undefined' && req.files != null) {
@@ -61,21 +62,20 @@ module.exports = class Biens {
 
                     //Je rajoute ma promesse de déplacement des photos upload
                     Object.values(req.files.photos).forEach(file => {
-                        photos.push(UploadImageRealty.moveFile(file, idRealty, photosPathName));
+                        photos.push(UploadImageRealty.moveFile(file, result._id, photosPathName));
                     });
 
                     //On rajoute les url des images dans la bdd
                     let objectPathImg = {
                         url_images: photosPathName
                     }
-                    repo.updateOneRealty(idRealty, objectPathImg)
-                    // console.log(objectPathImg)
+                    repo.updateOneRealty(result._id, objectPathImg)
 
                 }
             }
             // console.log(photos)
 
-            //J'exécute mes déplacement de photo
+            //J'exécute mes déplacements de photo
             Promise.all(photos)
         }).then(() => {
             req.flash('notify', 'Le bien a été ajouté à la base');

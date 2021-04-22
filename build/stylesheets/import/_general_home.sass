@@ -1,0 +1,44 @@
+.home_container
+	@include getMargin(50px,auto)
+	h1
+		font-size: 1.5em
+		@include getPadding(5px,auto)
+	.realty_contents
+		@include getSize(100%,auto)
+		@include getPadding(0,auto)
+		.product_realty
+			display: grid
+			grid-template-rows: 50px 5fr 3fr
+			grid-template-columns: 1fr
+			grid-template-areas: "header" "image" "informations"
+			.head_realty
+				grid-area: header
+				display: flex
+				justify-content: space-between
+				align-items: center
+
+			.image
+				grid-area: image
+
+			.info_realty
+				grid-area: informations
+
+@media screen and (min-width: 768px)
+	.product_realty
+		display: grid
+		grid-template-rows: 50px 5fr
+		grid-template-columns: 1fr 1fr
+		grid-template-areas: "header header" "image informations"
+		.head_realty
+			grid-area: header
+			display: flex
+			justify-content: space-between
+			align-items: center
+
+		.image
+			grid-area: image
+
+		.info_realty
+			grid-area: informations
+
+// @media screen and (min-width: 1280px)

@@ -64,6 +64,17 @@ block content
                             , name="room"
                             , class="formInput room"
                             )
+                .realtyDescription 
+                    label(for="rent") Loyer : 
+                        input(
+                            type="Number"
+                            , name="rent"
+                            , class="formInput rent"
+                            )
+                    label(for="type") Type de bien : 
+                        select(name="type", class="formInput type")
+                            option(value="appartement") Appartement 
+                            option(value="maison") Maison
                 .infoForm
                     label(for="infosAdress") Informations complémentaires : 
                     textarea(

@@ -6,39 +6,61 @@
 	.realty_contents
 		@include getSize(100%,auto)
 		@include getPadding(0,auto)
+		li
+			display: block
+			margin-bottom: 20px
 		.product_realty
 			display: grid
-			grid-template-rows: 50px 5fr 3fr
+			grid-template-rows: 50px 5fr 2fr
 			grid-template-columns: 1fr
 			grid-template-areas: "header" "image" "informations"
+			box-shadow: 2px 2px 5px $second-admin-color
+
+			text-decoration: none
+			color: $text-color
+			border-radius: 10px
+			&:hover
+				box-shadow: 2px 2px 10px $second-admin-color
+				transition: 0.2s
+
 			.head_realty
 				grid-area: header
 				display: flex
-				justify-content: space-between
+				justify-content: space-around
 				align-items: center
 
 			.image
 				grid-area: image
-
+				@include getSize(100%,auto)
+				img
+					@include getSize(98%,auto)
+					margin: 5px
+					border-radius: 10px
 			.info_realty
 				grid-area: informations
+				@include getPadding(5px, auto)
 
 @media screen and (min-width: 768px)
-	.product_realty
-		display: grid
-		grid-template-rows: 50px 5fr
-		grid-template-columns: 1fr 1fr
-		grid-template-areas: "header header" "image informations"
-		.head_realty
-			grid-area: header
-			display: flex
-			justify-content: space-between
-			align-items: center
+	.home_container
+		@include getMargin(50px,auto)
+		h1
+			font-size: 1.5em
+			@include getPadding(5px,auto)
+		.realty_contents
+			@include getSize(100%,auto)
+			@include getPadding(0,auto)
+			.product_realty
+				display: grid
+				grid-template-rows: 50px 5fr
+				grid-template-columns: 1fr 1fr
+				grid-template-areas: "header header" "image informations"
+				.head_realty
+					grid-area: header
 
-		.image
-			grid-area: image
+				.image
+					grid-area: image
 
-		.info_realty
-			grid-area: informations
+				.info_realty
+					grid-area: informations
 
-// @media screen and (min-width: 1280px)
+	// @media screen and (min-width: 1280px)

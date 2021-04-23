@@ -58,8 +58,6 @@ app.use(flash());
 // permet d'envoyer des variables à toutes les vues
 app.use((req, res, next) => {
 
-
-
   //dev admin session
   req.session.users = config.userDevAdmin;
   // console.log(res.locals)

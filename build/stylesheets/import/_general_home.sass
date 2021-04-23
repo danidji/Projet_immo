@@ -40,6 +40,54 @@
 				grid-area: informations
 				@include getPadding(5px, auto)
 
+	.oneRealty
+		.image
+			display: flex
+			justify-content: center
+			@include getMargin(auto,20px)
+	.carousel
+		position: relative
+		width: 800px
+		height: 400px
+		overflow: hidden
+		border-radius: 15px
+		box-shadow: 2px 2px 5px $second-admin-color
+
+		.carousel_wrapper
+			height: 100%
+			display: flex
+			position: absolute
+			top: 0
+			left: 0
+			padding: 0
+			margin: 0
+			transition: 0.5s ease-out
+
+		.carousel_button
+			position: absolute
+			top: 50%
+			transform: translate(0,-50%)
+			cursor: pointer
+			height: 100%
+			width: 5%
+			background-color: black
+			opacity: 0.4
+			border: none
+			color: white
+			font-weight: bold
+
+		.left
+			left: 0
+		.right
+			right: 0
+
+		.carousel_item
+			display: block
+			width: 800px
+			// width: 100%
+			background-size: cover
+			background-position: center
+
 @media screen and (min-width: 768px)
 	.home_container
 		@include getMargin(50px,auto)

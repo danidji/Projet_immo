@@ -3,12 +3,26 @@ extends layout
 block content
 
     .home_container 
-        .head_realty
-            h3=realties.realtyAdress.type + ' ' + realties.realtyAdress.surface + 'm² ' + realties.realtyAdress.postalCode
-        .price=realties.realtyAdress.rent + '€ par mois' 
-        .image
-            img(src=realties.url_images[0])
-        .info_realty 
-            p.type_realty=realties.realtyAdress.type+' - '+ realties.realtyAdress.room + ' pièces'
-            p.location=realties.realtyAdress.adress+' '+realties.realtyAdress.postalCode+' '+realties.realtyAdress.city 
-            p.infos=realties.realtyAdress.infosAdress
+        .oneRealty
+            .head_realty
+                h3=realties.realtyAdress.type + ' ' + realties.realtyAdress.surface + 'm² ' + realties.realtyAdress.postalCode
+            .price=realties.realtyAdress.rent + '€ par mois' 
+
+            .image
+                each image in realties.url_images   
+                    input(type="hidden", name="url_images", class='url_images' value=image)
+                .carousel
+                    ul.carousel_wrapper
+                    button.carousel_button.left &lt;
+                    button.carousel_button.right &gt;
+
+
+
+                //- each image in realties.url_images
+                //-     img(src=image)
+
+
+            .info_realty 
+                p.type_realty=realties.realtyAdress.type+' - '+ realties.realtyAdress.room + ' pièces'
+                p.location=realties.realtyAdress.adress+' '+realties.realtyAdress.postalCode+' '+realties.realtyAdress.city 
+                p.infos=realties.realtyAdress.infosAdress

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 // Connection à la BDD
 require('../bdd/database')();
+const slug = require('mongoose-slug-updater');
+mongoose.plugin(slug);
 
 //Schéma de données propres aux biens 
 const realtySchema = mongoose.Schema({
@@ -32,6 +34,7 @@ const realtySchema = mongoose.Schema({
         , infosContact: { type: String }
     }
     , url_images: { type: Array }
+    , slug: { type: String, slug: ["realtyAdress.type_realty", "realtyAdress.surface", "realtyAdress.postalCode",], unique: true }
 }, { versionKey: false });
 
 module.exports = class Realty {

@@ -5,7 +5,7 @@ block content
     .home_container 
         .oneRealty
             .head_realty
-                h3=realties.realtyAdress.type + ' ' + realties.realtyAdress.surface + 'm² ' + realties.realtyAdress.postalCode
+                h3=realties.realtyAdress.type_realty + ' ' + realties.realtyAdress.surface + 'm² ' + realties.realtyAdress.postalCode
             .price=realties.realtyAdress.rent + '€ par mois' 
 
             .image
@@ -17,12 +17,9 @@ block content
                     button.carousel_button.right &gt;
 
 
-
-                //- each image in realties.url_images
-                //-     img(src=image)
-
-
             .info_realty 
-                p.type_realty=realties.realtyAdress.type+' - '+ realties.realtyAdress.room + ' pièces'
+                p.type_realty=realties.realtyAdress.type_realty+' - '+ realties.realtyAdress.room + ' pièces'
                 p.location=realties.realtyAdress.adress+' '+realties.realtyAdress.postalCode+' '+realties.realtyAdress.city 
                 p.infos=realties.realtyAdress.infosAdress
+
+        

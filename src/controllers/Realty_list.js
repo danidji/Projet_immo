@@ -53,7 +53,7 @@ module.exports = class Biens {
                 , surface: req.body.surface
                 , room: req.body.room
                 , rent: req.body.rent
-                , type: req.body.type
+                , type_realty: req.body.type_realty
                 , infosAdress: req.body.infosAdress
             },
             contact: {

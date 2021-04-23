@@ -7,7 +7,7 @@ module.exports = class Home {
         // affichage des informations de ma base 
         repo.findAllRealty().then((result) => {
 
-            console.log('mes biens : ', result)
+            // console.log('mes biens : ', result)
             res.render('home', {
                 title: 'TeLoger'
                 , realties: result
@@ -16,7 +16,7 @@ module.exports = class Home {
     }
     printOneRealty(req, res) {
         repo.findOneRealty(req.params.id).then((result) => {
-            console.log('mon bien : ', result)
+            // console.log('mon bien : ', result)
             res.render('mon-bien', {
                 title: 'TeLoger'
                 , realties: result

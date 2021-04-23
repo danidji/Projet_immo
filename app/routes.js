@@ -19,6 +19,9 @@ module.exports = (app) => {
     app.get('/accueil/:slug', (req, res) => {
         (new Home()).print(req, res);
     })
+    app.get('/mon-bien/:id', (req, res) => {
+        (new Home()).printOneRealty(req, res);
+    })
 
     // routes vers la page d'inscription
     app.get('/register', (req, res) => {

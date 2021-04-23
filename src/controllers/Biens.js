@@ -19,6 +19,8 @@ module.exports = class Biens {
             , city: req.body.city
             , surface: req.body.surface
             , room: req.body.room
+            , rent: req.body.rent
+            , type: req.body.type
             , infosAdress: req.body.infosAdress
         };
         let contact = {

@@ -1,6 +1,7 @@
-let Realty = require('../repository/Biens')
-let repo = new Realty()
-let UploadImageRealtyService = require('../services/UploadImageRealty')
+let Realty = require('../repository/Biens');
+let repo = new Realty();
+let UploadImageRealtyService = require('../services/UploadImageRealty');
+// const fs = require('fs');
 
 module.exports = class Biens {
     printRealty(req, res) {
@@ -51,6 +52,8 @@ module.exports = class Biens {
                 , city: req.body.city
                 , surface: req.body.surface
                 , room: req.body.room
+                , rent: req.body.rent
+                , type: req.body.type
                 , infosAdress: req.body.infosAdress
             },
             contact: {

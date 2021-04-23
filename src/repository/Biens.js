@@ -11,6 +11,8 @@ const realtySchema = mongoose.Schema({
         , city: { type: String }
         , surface: { type: String }
         , room: { type: Number }
+        , rent: { type: Number }
+        , type: { type: String }
         , infosAdress: { type: String }
     }
     , contact: {

@@ -6,18 +6,28 @@ block content
     h1 Nos biens immobiliers :
     ul.realty_contents 
       each realty in realties 
-        +realtyList(realty.realtyAdress.sellerName,realty.url_images[0])
+        +realtyList(realty.realtyAdress.type
+        ,realty.realtyAdress.surface
+        ,realty.realtyAdress.rent
+        ,realty.realtyAdress.postalCode
+        ,realty.realtyAdress.rent
+        ,realty.url_images[0]
+        ,realty.realtyAdress.room
+        ,realty.realtyAdress.adress
+        ,realty.realtyAdress.city
+        ,realty.realtyAdress.infosAdress
+        ,realty._id)
     
 
-mixin realtyList(seller,url)
+mixin realtyList(type,surface,rent,postalCode,rent,url,room,adress,city,infosAdress,id)
   li
-    a(class="product_realty",href="#") 
+    a(class="product_realty",href="/mon-bien/"+id) 
       .head_realty
-        h3=seller
-        .price Price 
+        h3=type + ' ' + surface + 'm² ' + postalCode
+        .price=rent + '€ par mois' 
       .image
         img(src=url)
       .info_realty 
-        p.type_realty Type de bien 
-        p.location Adresse 
-        p.infos Infos complémentaires
+        p.type_realty=type+' - '+ room + ' pièces'
+        p.location=adress+' '+postalCode+' '+city 
+        p.infos=infosAdress

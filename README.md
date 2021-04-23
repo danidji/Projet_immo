@@ -12,6 +12,6 @@ npm install express-generator -g
  ```
  ## To-do 
 
-- Finir l'ajout d'info dans le formulaire
-- Mettre en place un carrousel d'images
 - Rajouter une fonction qui supprimer les images dans le dossier serveur lors de la suppression d'un bien
+- Améliorer le style de l'affichage des biens 
+  

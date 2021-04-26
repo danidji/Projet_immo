@@ -88,12 +88,6 @@ module.exports = (app) => {
 
         });
 
-    //route de deconnexion admin 
-    app.get('/admin/logout_admin'
-        , require('../src/services/jwt_controllers')
-        , (req, res) => {
-            res.redirect('/')
-        });
 
     let repoRealtyList = new Realty_list();
 
@@ -125,4 +119,38 @@ module.exports = (app) => {
         , (req, res) => {
             repoRealtyList.updateForm(req, res);
         })
+
+    // route vers la page utilisateurs
+    app.get('/admin/users'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            (new Admin()).printUsers(req, res);
+
+        });
+
+    // route vers la page biens
+    app.get('/admin/users/add'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            (new Admin()).printFormNewUser(req, res);
+
+        });
+
+    // routes pour supprimer un utilisateur 
+    app.get('/admin/users/delete/:id'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            // console.log('route delete');
+            (new Admin()).deleteUser(req, res);
+        })
+    //route p
+
+
+    //route de deconnexion admin 
+    app.get('/admin/logout_admin'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            res.redirect('/')
+        });
+
 };

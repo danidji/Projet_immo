@@ -51,6 +51,25 @@ module.exports = class User {
         return docs
     }
 
+    findAllUsers() {
+        return new Promise((resolve, reject) => {
+            this.db.find({}, (err, docs) => {
+                if (err) reject(err);
+                resolve(docs);
+            });
+        })
+    }
+
+    deleteOneUser(id) {
+        return new Promise((resolve, reject) => {
+            this.db.deleteOne({ _id: id }, (err) => {
+                console.log('élément supprimé');
+                if (err) reject(err)
+                resolve();
+            })
+        })
+    }
+
 
 }
 

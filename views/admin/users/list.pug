@@ -1,0 +1,40 @@
+extends ../layout_admin
+
+block content
+    h2 👥/  Les utilisateurs
+
+    .headRealty
+        h3 Liste des utilisateurs
+        .adminButton.realtyList
+            a(href="/admin/users/add") Enregistrer un nouvel utilisateur
+
+    .contentList
+        .flash_msg 
+            - var messages = getMessages()
+                if messages.notify
+                    each msg in messages.notify
+                        .alert.alert-info= msg
+                if messages.error
+                    each msg in messages.error
+                        .alert.alert-danger= msg
+
+        table 
+            thead 
+                tr 
+                    th Email
+                    th Nom
+                    th Prenom
+                    th Téléphone
+                    th Rôle
+            tbody
+                each val in users
+                    tr
+                        td= val.email 
+                        td= val.nom
+                        td= val.prenom
+                        td= val.phone
+                        td= val.role
+                        td.delete 
+                            a(href="/admin/users/delete/" + val._id) 🗑️
+                        td.modify 
+                            a(href="#" + val._id) 🖊️

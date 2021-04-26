@@ -13,8 +13,8 @@ module.exports = class Register {
     }
 
     async processForm(req, res) {
-        //On récupère les informations du formulaire dans req.body
-        // console.log(req.body);
+        // On récupère les informations du formulaire dans req.body
+        console.log(req.body);
 
         let userData = {
             email: req.body.email
@@ -25,7 +25,14 @@ module.exports = class Register {
             , phone: req.body.phone
 
         };
+        // si on fait l'ajout coté admin ou non 
+        if (typeof req.body.role != 'undefined') {
+            userData.role = req.body.role;
+        } else {
+            userData.role = 'user';
+        }
 
+        // console.log(userData)
         ////////  Verifier si l'email n'est pas présente en base 
         let repo = new User();
         const verif = await repo.findMail(userData.email);

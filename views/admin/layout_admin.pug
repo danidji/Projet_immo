@@ -20,7 +20,7 @@ html
               .status 🟢 online 
           .menu_admin 
               ul
-                each val in [{lien:'/admin/dashboard',text:'🖥️ Dashboard'},{lien:'/admin/realtyList',text:'🏠 Biens'},{lien:'#',text:'👥 Contact'},{lien:'/admin/logout_admin',text:'📴 Logout'}]
+                each val in [{lien:'/admin/dashboard',text:'🖥️ Dashboard'},{lien:'/admin/realtyList',text:'🏠 Biens'},{lien:'/admin/users',text:'👥 Utilisateurs'},{lien:'/admin/logout_admin',text:'📴 Logout'}]
                   li
                     a(class=val.class,href=val.lien) #{val.text}
         .section_admin

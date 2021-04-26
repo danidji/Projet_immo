@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
         if (err) return res.sendStatus(403);
         // console.log(user.roles)
         // Est admin
-        if (typeof user.roles != 'undefined' && user.roles == 'admin') {
+        if (typeof user.role != 'undefined' && user.role == 'admin') {
             next();
         } else {
             // n'est pas admin

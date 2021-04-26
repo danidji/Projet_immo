@@ -36,7 +36,13 @@ module.exports = class Login {
             if (verifPwd) {
 
                 //Création d'un token JWT : https://docs.google.com/document/d/1C_EqHLWobcBBUWg93xZQ2worj_UQib25MeqV5QCGplo/edit#
-                let accessToken = jwt.sign({ username: verifMail.email, roles: verifMail.role }, config.appKey, { expiresIn: 604800 });
+                let accessToken = jwt.sign({
+
+                    username: verifMail.email
+                    , firstname: verifMail.prenom
+                    , lastname: verifMail.nom
+                    , role: verifMail.role
+                }, config.appKey, { expiresIn: 604800 });
                 new Cookies(req, res).set('access_token', accessToken, { httpOnly: true, secure: false });
 
 

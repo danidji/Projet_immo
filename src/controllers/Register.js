@@ -14,7 +14,7 @@ module.exports = class Register {
 
     async processForm(req, res) {
         // On récupère les informations du formulaire dans req.body
-        console.log(req.body);
+        // console.log(req.body);
 
         let userData = {
             email: req.body.email

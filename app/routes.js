@@ -57,9 +57,13 @@ module.exports = (app) => {
     // 
     /////////
 
+    //Controle si admin 
+
+    app.use('/admin', require('../src/services/jwt_controllers'))
+
     // route vers la page admin
     app.get('/admin/dashboard'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             (new Admin()).print(req, res);
 
@@ -67,7 +71,7 @@ module.exports = (app) => {
 
     // route vers la page biens
     app.get('/admin/biens'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             (new Biens()).print(req, res);
 
@@ -80,7 +84,7 @@ module.exports = (app) => {
     // gestion du formulaire des biens immo
     app.post('/admin/biensImmo'
         , require('express-fileupload')({ createParentPath: true })
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             // console.log('Voici ma route !!!!!!!!!');
             // console.log(req.files);
@@ -93,21 +97,21 @@ module.exports = (app) => {
 
     // routes vers la liste des biens 
     app.get('/admin/realtyList'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             repoRealtyList.printRealty(req, res);
         })
 
     // routes pour supprimer un bien 
     app.get('/admin/realtyList/delete/:id'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             // console.log('route delete');
             repoRealtyList.deleteRealty(req, res);
         })
     //route pour accéder au formulaire de modification d'un bien
     app.get('/admin/realtyList/modify/:id'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             repoRealtyList.printModifyForm(req, res)
         })
@@ -115,14 +119,14 @@ module.exports = (app) => {
     // gestion du formulaire de modification des biens
     app.post('/admin/modifyRealty/:id'
         , require('express-fileupload')({ createParentPath: true })
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             repoRealtyList.updateForm(req, res);
         })
 
     // route vers la page utilisateurs
     app.get('/admin/users'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             (new Admin()).printUsers(req, res);
 
@@ -130,7 +134,7 @@ module.exports = (app) => {
 
     // route vers la page biens
     app.get('/admin/users/add'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             (new Admin()).printFormNewUser(req, res);
 
@@ -138,17 +142,26 @@ module.exports = (app) => {
 
     // routes pour supprimer un utilisateur 
     app.get('/admin/users/delete/:id'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             // console.log('route delete');
             (new Admin()).deleteUser(req, res);
         })
-    //route p
+    //route pour modifier un utilisateur
+    app.get('/admin/users/update/:id'
+        // , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            // console.log('route delete');
+            (new Admin()).printUpdateForm(req, res);
+        })
 
+    app.post('/admin/users/update/:id', (req, res) => {
+        (new Admin()).processUpdateForm(req, res);
+    })
 
     //route de deconnexion admin 
     app.get('/admin/logout_admin'
-        , require('../src/services/jwt_controllers')
+        // , require('../src/services/jwt_controllers')
         , (req, res) => {
             res.redirect('/')
         });

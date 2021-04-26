@@ -60,6 +60,16 @@ module.exports = class User {
         })
     }
 
+    findOneUser(id) {
+        return new Promise((resolve, reject) => {
+            this.db.findOne({ _id: id }, (err, doc) => {
+                if (err) reject(err);
+                console.log('élément trouvé en base');
+                resolve(doc);
+            });
+        });
+    }
+
     deleteOneUser(id) {
         return new Promise((resolve, reject) => {
             this.db.deleteOne({ _id: id }, (err) => {
@@ -67,6 +77,18 @@ module.exports = class User {
                 if (err) reject(err)
                 resolve();
             })
+        })
+    }
+
+    updateOneUser(id, obj) {
+        return new Promise((resolve, reject) => {
+            this.db.updateOne({ _id: id }
+                , obj
+                , (err) => {
+                    console.log('élément modifié')
+                    if (err) reject(err)
+                    resolve() // renvoie une indication de fin de promesse
+                })
         })
     }
 

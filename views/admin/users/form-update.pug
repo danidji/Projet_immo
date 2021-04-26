@@ -1,0 +1,65 @@
+extends ../layout_admin
+
+block content
+    h2 🏠/  Les biens
+
+    .headRealty
+        h3 Modifier un utilisateur
+        .adminButton.cancel
+            a( href="/admin/users") Annuler
+    
+    .contentForm 
+    
+        .flash_msg 
+            - var messages = getMessages()
+                if messages.notify
+                    each msg in messages.notify
+                        .alert.alert-info= msg
+                if messages.error
+                    each msg in messages.error
+                        .alert.alert-danger= msg
+
+        form.formRegister(action="/admin/users/update/" + user._id, method="post") 
+            .mail
+                label(for="email") Adresse E-mail :
+                input(
+                    type="email"
+                    , name="email"
+                    , class="formInput email"
+                    , required
+                    , value= user.email
+                    )
+            .civility 
+                select(name="civility", class="formInput gender")
+                    option(value="male") Monsieur 
+                    option(value="female") Madame
+            .firstName
+                label(for="prenom") prénom : 
+                input(
+                    type="text"
+                    , name="prenom"
+                    , class="formInput prenom"
+                    , value= user.prenom
+                    )
+            .lastName
+                label(for="nom") Nom de famille :
+                input(
+                    type="text"
+                    , name="nom"
+                    , class="formInput nom"
+                    , value= user.nom
+                    ) 
+            .phoneNumber
+                    label(for="phone") Téléphone : 
+                    input(
+                        type="tel"
+                        , name="phone"
+                        , class= "formInput phone"
+                        , value= user.phone
+                        )
+            .role 
+                select(name="role", class="formInput role")
+                    option(value="admin") Administrateur 
+                    option(value="user") Utilisateur
+            .checked
+                input(type="submit",class='formInput check' value="Enregistrer")

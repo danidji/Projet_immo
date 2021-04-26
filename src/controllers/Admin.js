@@ -10,7 +10,7 @@ module.exports = class Admin {
 
     printUsers(req, res) {
         repo.findAllUsers().then((result) => {
-            console.log(result)
+            // console.log(result)
             res.render('admin/users/list', {
                 title: 'TeLoger'
                 , users: result
@@ -34,5 +34,37 @@ module.exports = class Admin {
             .catch((err) => {
                 console.error(err.message)
             })
+    }
+
+    printUpdateForm(req, res) {
+        repo.findOneUser(req.params.id)
+            .then((result) => {
+                // console.log(result)
+                res.render('admin/users/form-update', {
+                    title: 'TeLoger'
+                    , user: result
+                });
+
+            });
+    }
+
+    processUpdateForm(req, res) {
+        let userData = {
+            email: req.body.email
+            , civility: req.body.civility
+            , prenom: req.body.prenom
+            , nom: req.body.nom
+            , phone: req.body.phone
+            // , role = req.body.role
+        };
+        console.log(req.body)
+        repo.updateOneUser(req.params.id, userData).then(() => {
+            req.flash('notify', 'élément modifié !!')
+            res.redirect('/admin/users')
+
+        }).catch((err) => {
+            console.error(err.message)
+        });
+
     }
 };

@@ -58,16 +58,20 @@ module.exports = (app) => {
     /////////
 
     // route vers la page admin
-    app.get('/admin/dashboard', (req, res) => {
-        (new Admin()).print(req, res);
+    app.get('/admin/dashboard'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            (new Admin()).print(req, res);
 
-    });
+        });
 
     // route vers la page biens
-    app.get('/admin/biens', (req, res) => {
-        (new Biens()).print(req, res);
+    app.get('/admin/biens'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            (new Biens()).print(req, res);
 
-    });
+        });
 
     //utilisation d'express-fileupload pour le téléchargement de fichier : https://www.npmjs.com/package/express-fileupload
     //                                                                   : https://github.com/richardgirges/express-fileupload/tree/master/example
@@ -76,6 +80,7 @@ module.exports = (app) => {
     // gestion du formulaire des biens immo
     app.post('/admin/biensImmo'
         , require('express-fileupload')({ createParentPath: true })
+        , require('../src/services/jwt_controllers')
         , (req, res) => {
             // console.log('Voici ma route !!!!!!!!!');
             // console.log(req.files);
@@ -84,30 +89,39 @@ module.exports = (app) => {
         });
 
     //route de deconnexion admin 
-    app.get('/admin/logout_admin', (req, res) => {
-        res.redirect('/')
-    });
+    app.get('/admin/logout_admin'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            res.redirect('/')
+        });
 
     let repoRealtyList = new Realty_list();
 
     // routes vers la liste des biens 
-    app.get('/admin/realtyList', (req, res) => {
-        repoRealtyList.printRealty(req, res);
-    })
+    app.get('/admin/realtyList'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            repoRealtyList.printRealty(req, res);
+        })
 
     // routes pour supprimer un bien 
-    app.get('/admin/realtyList/delete/:id', (req, res) => {
-        // console.log('route delete');
-        repoRealtyList.deleteRealty(req, res);
-    })
+    app.get('/admin/realtyList/delete/:id'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            // console.log('route delete');
+            repoRealtyList.deleteRealty(req, res);
+        })
     //route pour accéder au formulaire de modification d'un bien
-    app.get('/admin/realtyList/modify/:id', (req, res) => {
-        repoRealtyList.printModifyForm(req, res)
-    })
+    app.get('/admin/realtyList/modify/:id'
+        , require('../src/services/jwt_controllers')
+        , (req, res) => {
+            repoRealtyList.printModifyForm(req, res)
+        })
 
     // gestion du formulaire de modification des biens
     app.post('/admin/modifyRealty/:id'
         , require('express-fileupload')({ createParentPath: true })
+        , require('../src/services/jwt_controllers')
         , (req, res) => {
             repoRealtyList.updateForm(req, res);
         })

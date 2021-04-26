@@ -55,9 +55,9 @@ module.exports = class Admin {
             , prenom: req.body.prenom
             , nom: req.body.nom
             , phone: req.body.phone
-            // , role = req.body.role
+            , role: req.body.role
         };
-        console.log(req.body)
+        // console.log(req.body)
         repo.updateOneUser(req.params.id, userData).then(() => {
             req.flash('notify', 'élément modifié !!')
             res.redirect('/admin/users')

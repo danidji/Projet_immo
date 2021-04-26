@@ -15,6 +15,13 @@ module.exports = (req, res, next) => {
         // console.log(user.roles)
         // Est admin
         if (typeof user.role != 'undefined' && user.role == 'admin') {
+
+
+            res.locals.user = user;
+            res.locals.user.connected = true;
+
+            console.log('---Service---');
+            console.log(res.locals)
             next();
         } else {
             // n'est pas admin

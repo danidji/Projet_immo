@@ -64,11 +64,11 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
 
 
-  // if (res.locals.session !== undefined) {
-  //   console.log('---app.js---');
-  //   console.log(res.locals.session)
-  //   // console.log(res.locals)
-  // }
+  if (res.locals.session !== undefined) {
+    console.log('---app.js---');
+    // console.log(res.locals.session)
+    console.log(res.locals)
+  }
 
   next();
 });

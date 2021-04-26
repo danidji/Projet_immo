@@ -26,6 +26,7 @@ const userSchema = mongoose.Schema({
     }
     , date: { type: Date, default: Date.now }
     , slug: { type: String, slug: ["nom", "prenom"] }
+    , role: { type: String }
 
 }, { versionKey: false });
 

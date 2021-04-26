@@ -1,5 +1,8 @@
 let User = require('../repository/User');
 let bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const Cookies = require("cookies");
+const config = require('../../app/config')
 
 
 module.exports = class Login {
@@ -31,13 +34,16 @@ module.exports = class Login {
 
             // Si le mail et le mdp est correct on redirige vers la page d'accueil
             if (verifPwd) {
+
+                //Création d'un token JWT : https://docs.google.com/document/d/1C_EqHLWobcBBUWg93xZQ2worj_UQib25MeqV5QCGplo/edit#
+                let accessToken = jwt.sign({ username: verifMail.email, roles: verifMail.role }, config.appKey, { expiresIn: 604800 });
+                new Cookies(req, res).set('access_token', accessToken, { httpOnly: true, secure: false });
+
+
                 req.flash('notify', 'Vous êtes connecté !');
                 // on stocke les données utilsateur en session
                 req.session.users = verifMail;
-                console.log('----login.js----');
-                // console.log(req.session);
-                console.log(res.locals);
-                // res.redirect('/');
+
                 res.redirect(`/accueil/${verifMail.slug}`);
             } else {
 

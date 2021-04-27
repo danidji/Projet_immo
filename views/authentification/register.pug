@@ -5,6 +5,7 @@ block content
 	h1 Inscrivez-vous 
 
 	form.formRegister(action="/inscription", method="post") 
+		input(type='hidden', name='csrf', value=token_csrf)
 		.mail
 			label(for="email") Adresse E-mail :
 			input(

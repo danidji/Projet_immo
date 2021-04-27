@@ -20,6 +20,7 @@ block content
                         .alert.alert-danger= msg
 
         form.form_realty(action="/admin/modifyRealty/" + realty._id, method="post", enctype="multipart/form-data")
+            input(type='hidden', name='csrf', value=session.token)
             .form1 Adresse du bien
                 //- legend Adresse du bien
                 .sellerName

@@ -20,6 +20,7 @@ block content
                         .alert.alert-danger= msg
 
         form.formRegister(action="/admin/users/update/" + user._id, method="post") 
+            input(type='hidden', name='csrf', value=session.token)
             .mail
                 label(for="email") Adresse E-mail :
                 input(

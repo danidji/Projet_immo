@@ -1,33 +1,35 @@
 const Cookies = require("cookies");
-const config = require('../../app/config')
 const jwt = require('jsonwebtoken');
+const config = require('../../app/config.js');
 
-module.exports = (req, res, next) => {
-
-    //vérification du token lors de l'appel de la route admin
-    let token = new Cookies(req, res).get('access_token');
-
-    if (token == null) return res.sendStatus(401)
-
-    jwt.verify(token, config.appKey, (err, user) => {
-        // Erreur du JWT
-        if (err) return res.sendStatus(403);
-        // console.log(user.roles)
-        // Est admin
-        if (typeof user.role != 'undefined' && user.role == 'admin') {
-
-
-            res.locals.user = user;
-            res.locals.user.connected = true;
-
-            console.log('---Service---');
-            console.log(res.locals)
-            next();
+module.exports = (app) => {
+    app.use('/', (req, res, next) => {
+        // Récupération du token dans le cookie
+        let token = new Cookies(req, res).get('access_token');
+        // Si le cookie (access_token) n'existe pas
+        if (token !== null && token !== undefined) {
+            // sinon on vérifie le jwt
+            jwt.verify(token, config.appKey, (err, dataJwt) => {
+                // Erreur du JWT (n'est pas un JWT, a été modifié, est expiré)
+                if (err) return res.sendStatus(403);
+                res.locals.user = dataJwt;
+                res.locals.user.connected = true;
+                console.log('---jwt service ---');
+                console.log(res.locals)
+                next();
+            });
         } else {
-            // n'est pas admin
-            req.flash('error', "Vous n'êtes pas administrateur");
-            res.redirect('/login');
+            next();
         }
     });
 
+    // Ajout du middleware du controle d'accès à l'administration avec les JWT
+    app.use('/admin', (req, res, next) => {
+        // Si on est admin
+        if (typeof res.locals.user.role != 'undefined' && res.locals.user.role == 'admin') {
+            next();
+            return;
+        }
+        return res.sendStatus(401);
+    });
 }

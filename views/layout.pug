@@ -10,16 +10,22 @@ html
     .container 
       nav  
         .logo TeLoger
-        if session.users
-          ul
-            each val in [{lien:'/',text:'Accueil'},{lien:'/admin/dashboard',text:'Admin'},{lien:'/logout',text:'Se déconnecter'}]
-              li
-                a(class=val.class,href=val.lien) #{val.text}
+        if user
+          if user.role== 'admin'
+            ul
+              each val in [{lien:'/',text:'Accueil'},{lien:'/admin/dashboard',text:'Admin'},{lien:'/logout',text:'Se déconnecter'}]
+                li
+                  a(class=val.class,href=val.lien) #{val.text}
+          else 
+            ul
+              each val in [{lien:'/',text:'Accueil'},{lien:'/logout',text:'Se déconnecter'}]
+                li
+                  a(class=val.class,href=val.lien) #{val.text}
         else
-          ul
-            each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'}]
-              li
-                a(class=val.class,href=val.lien) #{val.text}
+            ul
+              each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'}]
+                li
+                  a(class=val.class,href=val.lien) #{val.text}
 
       - var messages = getMessages()
         if messages.notify

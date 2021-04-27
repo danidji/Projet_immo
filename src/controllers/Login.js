@@ -39,16 +39,16 @@ module.exports = class Login {
                 let accessToken = jwt.sign({
 
                     username: verifMail.email
-                    , firstname: verifMail.prenom
-                    , lastname: verifMail.nom
+                    , firstname: verifMail.nom
+                    , lastname: verifMail.prenom
                     , role: verifMail.role
                 }, config.appKey, { expiresIn: 604800 });
                 new Cookies(req, res).set('access_token', accessToken, { httpOnly: true, secure: false });
 
 
                 req.flash('notify', 'Vous êtes connecté !');
-                // on stocke les données utilsateur en session
-                req.session.users = verifMail;
+                // on stocke les données utilsateur en session => on utilise un token JWT pour la connexion
+                // req.session.users = verifMail;
 
                 res.redirect(`/accueil/${verifMail.slug}`);
             } else {

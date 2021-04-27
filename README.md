@@ -14,5 +14,6 @@ npm install express-generator -g
 
 - Rajouter une fonction qui supprimer les images dans le dossier serveur lors de la suppression d'un bien
 - Améliorer le style de l'affichage des biens
-- Enlever le req.session et changer l'affichage des variables envoyé en templating 
+- Faire une page de contact qui permettent d'envoyer un message à l'administrateur
+- L'administrateur peut aussi répondre par mail 
   

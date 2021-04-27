@@ -6,8 +6,8 @@ let Logout = require('../src/controllers/logout');
 let Admin = require('../src/controllers/Admin');
 let Biens = require('../src/controllers/Biens');
 let Realty_list = require('../src/controllers/Realty_list');
-
-const csrf = require('../src/services/randomTokenCsrf')
+let Contact = require('../src/controllers/Contact');
+const csrf = require('../src/services/randomTokenCsrf');
 
 
 
@@ -58,6 +58,22 @@ module.exports = (app) => {
         , (req, res) => {
             (new Login()).processLogin(req, res);
         })
+
+    app.get('/contact'
+        , csrf.generate
+        , (req, res) => {
+            (new Contact()).print(req, res);
+        })
+
+    app.post('/contact/envoie-message'
+        , csrf.verify
+        , (req, res) => {
+            (new Contact()).processForm(req, res);
+        });
+
+
+
+
     //route de déconnexion utilisateur
     app.get('/logout', (req, res) => {
         (new Logout()).quitSession(req, res);

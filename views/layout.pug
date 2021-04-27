@@ -13,17 +13,17 @@ html
         if user
           if user.role== 'admin'
             ul
-              each val in [{lien:'/',text:'Accueil'},{lien:'/admin/dashboard',text:'Admin'},{lien:'/logout',text:'Se déconnecter'}]
+              each val in [{lien:'/',text:'Accueil'},{lien:'/admin/dashboard',text:'Admin'},{lien:'/logout',text:'Se déconnecter'},{lien:'/contact',text:'Contact'}]
                 li
                   a(class=val.class,href=val.lien) #{val.text}
           else 
             ul
-              each val in [{lien:'/',text:'Accueil'},{lien:'/logout',text:'Se déconnecter'}]
+              each val in [{lien:'/',text:'Accueil'},{lien:'/logout',text:'Se déconnecter'},{lien:'/contact',text:'Contact'}]
                 li
                   a(class=val.class,href=val.lien) #{val.text}
         else
             ul
-              each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'}]
+              each val in [{lien:'/',text:'Accueil'},{lien:'/register',text:'Inscription'},{lien:'/login',text:'Se connecter'},{lien:'/contact',text:'Contact'}]
                 li
                   a(class=val.class,href=val.lien) #{val.text}
 
@@ -34,8 +34,9 @@ html
         if messages.error
           each msg in messages.error
             .alert.alert-danger= msg
-
-    block content
+            
+    .content_page
+      block content
 
       
 

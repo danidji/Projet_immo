@@ -53,6 +53,8 @@ app.use(session({
 const flash = require('express-flash-messages');
 app.use(flash());
 
+//test csrf 
+// require('./src/services/randomTokenCsrf')(req, res);
 
 
 // permet d'envoyer des variables à toutes les vues
@@ -64,6 +66,7 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
 
 
+
   if (res.locals.session !== undefined) {
     console.log('---app.js---');
     // console.log(res.locals.session)
@@ -72,6 +75,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 
 //gestion des routes
 require('./app/routes')(app);

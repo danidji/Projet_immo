@@ -58,6 +58,8 @@ nav
 
 .alert-info
     background-color: $four-color
+.content_page
+    @include getMargin(50px,auto)
 
 .formLogin, .formRegister
     display: flex
@@ -80,7 +82,7 @@ nav
         .checked
             background-color: $first-color
 
-@media screen and (min-width: 768px)
+@media screen and (min-width: 1280px)
     nav
         display: flex
         justify-content: space-between
@@ -97,3 +99,4 @@ nav
 
     .alert
         width: 50%
+    // @media screen and (min-width: 768px)

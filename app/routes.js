@@ -10,8 +10,11 @@ let Realty_list = require('../src/controllers/Realty_list');
 const csrf = require('../src/services/randomTokenCsrf')
 
 
+
 module.exports = (app) => {
 
+    // Ajout du middleware gestion des JWT
+    require('../src/services/jwt_controllers')(app);
     ///// routes vers l'accueil
     app.get('/', (req, res) => {
         (new Home()).print(req, res);
@@ -66,10 +69,6 @@ module.exports = (app) => {
     // Gestion des routes de la page admin
     // 
     /////////
-
-    //Controle si admin 
-
-    app.use('/admin', require('../src/services/jwt_controllers'))
 
     // route vers la page admin
     app.get('/admin/dashboard'

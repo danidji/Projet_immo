@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 // Middleware favicon
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
-
+// app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 
 //Ajout du middleware express session
 const session = require('express-session');

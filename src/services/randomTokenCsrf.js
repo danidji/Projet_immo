@@ -12,14 +12,14 @@ exports.generate = (req, res, next) => {
 
     // console.log(res.locals);
     // console.log(req.session);
-    next();
+    return next();
 };
 
 exports.verify = (req, res, next) => {
     //On vérifie à présent si le token de la session est bien égale au token du formulaire
     if (req.body.csrf === req.session.token) {
 
-        next();
+        return next();
     } else {
         res.sendStatus(403);
     }

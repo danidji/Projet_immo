@@ -47,9 +47,9 @@ module.exports = class Realty {
         return new Promise((resolve, reject) => {
             // console.log(realtyData)
             this.db.create(realtyData, (err, doc) => {
-                console.log('élément ajouté à la bdd');
+                // console.log('élément ajouté à la bdd');
                 if (err) reject(err)
-                console.log(doc)
+                // console.log(doc)
                 resolve(doc)
             });
         })
@@ -68,7 +68,7 @@ module.exports = class Realty {
         return new Promise((resolve, reject) => {
             this.db.findOne({ _id: id }, (err, doc) => {
                 if (err) reject(err);
-                console.log('élément trouvé en base');
+                // console.log('élément trouvé en base');
                 resolve(doc);
             });
         });
@@ -76,7 +76,7 @@ module.exports = class Realty {
     deleteOneRealty(id) {
         return new Promise((resolve, reject) => {
             this.db.deleteOne({ _id: id }, (err) => {
-                console.log('élément supprimé');
+                // console.log('élément supprimé');
                 if (err) reject(err)
                 resolve();
             })
@@ -88,7 +88,7 @@ module.exports = class Realty {
             this.db.updateOne({ _id: id }
                 , obj
                 , (err) => {
-                    console.log('élément modifié')
+                    // console.log('élément modifié')
                     if (err) reject(err)
                     resolve() // renvoie une indication de fin de promesse
                 })

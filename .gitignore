@@ -74,5 +74,5 @@ package-lock.json
 /app/config.js
 
 #Exclusion des images 
-/public/images/
+/public/images/realty/
 /divers/

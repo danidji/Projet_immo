@@ -14,8 +14,8 @@ module.exports = (app) => {
                 if (err) return res.sendStatus(403);
                 res.locals.user = dataJwt;
                 res.locals.user.connected = true;
-                console.log('---jwt service ---');
-                console.log(res.locals)
+                // console.log('---jwt service ---');
+                // console.log(res.locals)
                 next();
             });
         } else {

@@ -107,8 +107,8 @@ module.exports = (app) => {
 
     // gestion du formulaire des biens immo
     app.post('/admin/biensImmo'
-        , csrf.verify
         , require('express-fileupload')({ createParentPath: true })
+        , csrf.verify
         , (req, res) => {
             // console.log('Voici ma route !!!!!!!!!');
             // console.log(req.files);

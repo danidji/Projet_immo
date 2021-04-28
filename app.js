@@ -60,8 +60,8 @@ app.use((req, res, next) => {
 
   //dev admin session
   // req.session.users = config.userDevAdmin;
-  // console.log(res.locals)
   res.locals.session = req.session;
+  console.log(res.locals)
 
   // if (res.locals.session !== undefined) {
   //   console.log('---app.js---');

@@ -6,7 +6,7 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const config = require('./app/config')
 const bodyParser = require('body-parser');
-const favicon = require('serve-favicon');
+let favicon = require('serve-favicon');
 
 
 const app = express();
@@ -54,9 +54,6 @@ app.use(session({
 const flash = require('express-flash-messages');
 app.use(flash());
 
-//test csrf 
-// require('./src/services/randomTokenCsrf')(req, res);
-
 
 // permet d'envoyer des variables à toutes les vues
 app.use((req, res, next) => {
@@ -65,8 +62,6 @@ app.use((req, res, next) => {
   // req.session.users = config.userDevAdmin;
   // console.log(res.locals)
   res.locals.session = req.session;
-
-
 
   // if (res.locals.session !== undefined) {
   //   console.log('---app.js---');

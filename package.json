@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha --recursive --exit"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,6 +27,8 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "sinon": "^10.0.0"
   }
 }

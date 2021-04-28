@@ -11,10 +11,11 @@ module.exports = () => {
             , useNewUrlParser: true
             , useUnifiedTopology: true
         });
+    mongoose.set('useCreateIndex', true);
 
     const db = mongoose.connection;
     db.once('open', () => {
-        console.log(`connexion OK !`);
+        // console.log(`connexion OK !`);
     });
 
 

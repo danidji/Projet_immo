@@ -71,7 +71,7 @@ package-lock.json
 *.css.map
 
 #Exclusion du fichier de config : 
-/app/config.js
+/app/config-dev.js
 
 #Exclusion des images 
 /public/images/realty/

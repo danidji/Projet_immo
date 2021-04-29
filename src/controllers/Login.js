@@ -1,9 +1,13 @@
-let User = require('../repository/User');
-let bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Cookies = require("cookies");
-const config = require('../../app/config')
+const crypto = require('crypto');
+
+const User = require('../repository/User');
+const ForgottenPassword = require('../repository/ForgottenPassword');
 const MailerService = require('../services/Mailer.js');
+
+const config = require('../../app/config')
 
 
 module.exports = class Login {
@@ -75,20 +79,35 @@ module.exports = class Login {
     processPasswordForget(req, res, app) {
         let mailer = new MailerService();
         let email = req.body.email;
-        // On génére le mail
-        app.render('mails/regenerate_password.pug', { /**/ }, (err, html) => {
-            // On vérifie si l'adresse email existe dans notre NDD
-            (new User).findMail(email).then((result) => {
-                // si l'email existe
-                if (result) {
-                    // on envoi le mail
-                    mailer.send(email, 'Mot de passe oublié', html);
-                }
-                // Dans tout les cas on met une flashbag et une redirection
-                req.flash('notify', 'Un mail vous a été envoyé.');
-                res.redirect('/');
+
+        // let token = crypto.createHash('sha1').update(`${new Date().toDateString()}${Math.random()}`).digest('hex')
+
+        let newPasswordData = {
+            email: email
+            , token: crypto.createHash('sha1').update(`${new Date().toDateString()}${Math.random()}`).digest('hex')
+        };
+
+        (new ForgottenPassword()).add(newPasswordData).then((result) => {
+
+            // console.log("🚀 Login ~ result", result);
+
+            // On génére le mail
+            app.render('mails/regenerate_password.pug', { pass: result }, (err, html) => {
+                // On vérifie si l'adresse email existe dans notre NDD
+                (new User()).findMail(email).then((result) => {
+                    // si l'email existe
+                    if (result) {
+                        // on envoi le mail
+                        mailer.send(email, 'Mot de passe oublié', html);
+                    }
+                    // Dans tout les cas on met une flashbag et une redirection
+                    req.flash('notify', 'Un mail vous a été envoyé.');
+                    res.redirect('/');
+                });
             });
-        });
+        })
+
+
 
     }
 };

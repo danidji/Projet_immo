@@ -16,6 +16,7 @@ block content
                     th Nom
                     th Sujet
                     th Message
+                    th Date
             tbody
                 each val in messages
                     tr
@@ -23,5 +24,6 @@ block content
                         td= val.nom
                         td= val.sujet
                         td= val.message
+                        td= val.txtDate
                         td.open 
                             a(href="/admin/messages/affichage/"+ val._id) Ouvrir

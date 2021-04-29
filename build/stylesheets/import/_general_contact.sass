@@ -3,3 +3,91 @@
     border-radius: 15px
     padding: 20px
     @include getMargin(50px,auto)
+
+.formContact
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    .mail, .lastName, .subject, .message
+        box-sizing: border-box
+        width: 100%
+        @include getMargin(0, 5px)
+        input
+            box-sizing: border-box
+            width: 100%
+    .mail, .lastName, .subject
+        height: 40px
+        input
+            height: 100%
+            border: 1px solid #d8d8d8
+            padding-left: 5px
+            font-size: 1.2rem
+    .message
+        height: 80px
+        textarea
+            border: 1px solid #d8d8d8
+            padding: 5px
+            font-size: 1.2rem
+    .checked
+        margin-top: 15px
+        width: 100px
+        height: 30px
+        align-self: flex-end
+        input
+            width: 100%
+            height: 100%
+            font-size: 1.2rem
+            border-radius: 15px
+            cursor: pointer
+            background-color: $third-color
+            border: none
+            color: $secondary-color
+            &:hover
+                box-shadow: 2px 2px 5px $first-color
+
+@media screen and (min-width: 768px)
+    .formContact
+        display: grid
+        grid-template-rows: 40px 40px 40px 40px
+        grid-template-columns: 1fr 2fr
+        grid-template-areas: "mail message" "name message" "subject message "
+        grid-gap: 30px
+
+        .mail
+            grid-area: mail
+            width: 100%
+            height: 100%
+
+        .lastName
+            grid-area: name
+            width: 100%
+            height: 100%
+
+        .subject
+            grid-area: subject
+            width: 100%
+            height: 100%
+
+        .message
+            grid-area: message
+            width: 100%
+            height: 100%
+            // grid-row-start: 1
+            // grid-row-end: span 3
+            .textArea
+                padding: 5px
+                margin: 0
+        .formInput
+            // padding: 5px
+            width: 100%
+            height: 100%
+
+        .checked
+            grid-column-start: 2
+            grid-column-end: span 1
+            justify-self: self-end
+
+@media screen and (min-width: 1280px)
+    .content_contact
+        @include getMargin(100px,auto)

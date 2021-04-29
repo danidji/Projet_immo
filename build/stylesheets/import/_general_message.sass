@@ -1,0 +1,26 @@
+.contentMessages
+    background-color: $secondary-color
+    margin-bottom: 10px
+    box-shadow: 2px 2px 2px $second-admin-color
+
+    table
+        border-collapse: collapse
+        td, th
+            border-bottom: 1px solid #606078
+            padding: .5rem
+
+        .open
+            a
+                text-decoration: none
+                display: block
+                text-align: center
+                // line-height: 30px
+                border-radius: 5px
+                background-color: $button-admin-color
+                height: 30px
+                width: auto
+                @include getPadding(10px, 5px)
+                box-sizing: border-box
+                color: $fourth-admin-color
+                &:hover
+                    box-shadow: 2px 2px 5px $button-admin-color

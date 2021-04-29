@@ -72,6 +72,30 @@ module.exports = class Admin {
 
     printListMsg(req, res) {
         repoContact.findAllMsg().then((result) => {
+            function formatDate(thisDate) {
+                let add0 = (nb) => {
+                    return nb < 10 ? nb = `0${nb}` : nb;
+                };
+                let year = thisDate.getFullYear();
+                let month = add0(thisDate.getMonth() + 1);
+                let day = add0(thisDate.getDate());
+                let hours = thisDate.getHours();
+                let minutes = thisDate.getMinutes();
+                return `le ${day}/${month}/${year} à ${hours}:${minutes}`
+            }
+            /*
+            for (let key in result) {
+                result[key].txtDate = formatDate(result[key].date);
+                console.log(result[key].date);
+                console.log(formatDate(result[key].date));
+            }*/
+
+            result.map(element => {
+                element.txtDate = formatDate(element.date);
+                return element;
+            });
+            console.log(result)
+
             res.render('admin/messages/list', {
                 title: 'TeLoger'
                 , messages: result

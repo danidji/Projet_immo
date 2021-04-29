@@ -7,6 +7,7 @@ const contactSchema = mongoose.Schema({
     email: { type: String }
     , nom: { type: String }
     , date: { type: Date, default: Date.now }
+    , textDate: { type: String, default: Date.now }
     , sujet: { type: String }
     , message: { type: String }
 

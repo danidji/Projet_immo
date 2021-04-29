@@ -181,6 +181,15 @@ module.exports = (app) => {
             (new Admin()).processUpdateForm(req, res);
         })
 
+    app.get('/admin/messages'
+        , (req, res) => {
+            (new Admin()).printListMsg(req, res);
+        })
+    app.get('/admin/messages/affichage/:id'
+        , (req, res) => {
+            (new Admin()).printMsg(req, res);
+        })
+
     //route de deconnexion admin 
     app.get('/admin/logout_admin'
         , (req, res) => {

@@ -1,5 +1,7 @@
 let User = require('../repository/User');
+let Contact = require('../repository/Contact');
 let repo = new User();
+let repoContact = new Contact();
 
 module.exports = class Admin {
     print(req, res) {
@@ -67,4 +69,21 @@ module.exports = class Admin {
         });
 
     }
+
+    printListMsg(req, res) {
+        repoContact.findAllMsg().then((result) => {
+            res.render('admin/messages/list', {
+                title: 'TeLoger'
+                , messages: result
+            });
+        });
+    }
+
+    printMsg(req, res) {
+        res.render('admin/messages/affichage', {
+            title: 'TeLoger'
+        })
+    }
+
+
 };

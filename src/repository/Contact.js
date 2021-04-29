@@ -27,4 +27,12 @@ module.exports = class Contact {
             })
         })
     }
+    findAllMsg() {
+        return new Promise((resolve, reject) => {
+            this.db.find({}, (err, docs) => {
+                if (err) reject(err);
+                resolve(docs);
+            });
+        })
+    }
 }

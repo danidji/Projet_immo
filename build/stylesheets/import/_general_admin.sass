@@ -24,6 +24,31 @@ body
     align-items: center
     background-color: $first-admin-color
     color: $secondary-color
+    .notif_msg
+        background-color: $second-admin-color
+        box-sizing: border-box
+        padding: 5px
+        border-radius: 10px
+        display: flex
+        align-items: center
+        &:hover
+            background-color: $third-admin-color
+        a
+            margin: 5px
+            @include getMargin(0px,5px)
+            @include getSize(100%,100%)
+            display: block
+            color: $fourth-admin-color
+            text-decoration: none
+        .nb.active
+            // @include getMargin(3px,0px)
+            @include getSize(25px,20px)
+            // border: 1px solid $third-color
+            border-radius: 10px
+            text-align: center
+            font-size: 0.9rem
+            line-height: 20px
+            background-color: $first-color
 
 .sideBar_admin
     background-color: $second-admin-color

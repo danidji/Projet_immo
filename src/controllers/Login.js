@@ -3,6 +3,7 @@ let bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Cookies = require("cookies");
 const config = require('../../app/config')
+const MailerService = require('../services/Mailer.js');
 
 
 module.exports = class Login {
@@ -64,6 +65,30 @@ module.exports = class Login {
             req.flash('error', "L'email n'existe pas en base.");
             res.redirect('/login');
         }
+
+    }
+
+    printPasswordForget(req, res) {
+        res.render('authentification/passwordForget', { title: 'TeLoger' })
+    }
+
+    processPasswordForget(req, res, app) {
+        let mailer = new MailerService();
+        let email = req.body.email;
+        // On génére le mail
+        app.render('mails/regenerate_password.pug', { /**/ }, (err, html) => {
+            // On vérifie si l'adresse email existe dans notre NDD
+            (new User).findMail(email).then((result) => {
+                // si l'email existe
+                if (result) {
+                    // on envoi le mail
+                    mailer.send(email, 'Mot de passe oublié', html);
+                }
+                // Dans tout les cas on met une flashbag et une redirection
+                req.flash('notify', 'Un mail vous a été envoyé.');
+                res.redirect('/');
+            });
+        });
 
     }
 };

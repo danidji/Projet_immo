@@ -59,6 +59,7 @@ module.exports = (app) => {
             (new Login()).processLogin(req, res);
         })
 
+    // gestion du formulaire de contact
     app.get('/contact'
         , csrf.generate
         , (req, res) => {
@@ -71,6 +72,14 @@ module.exports = (app) => {
             (new Contact()).processForm(req, res);
         });
 
+    // gestion du mot de passe oublié
+    app.get('/mot-de-passe-oublie', (req, res) => {
+        (new Login()).printPasswordForget(req, res);
+    })
+
+    app.post('/mot_de_passe_oublie', (req, res) => {
+        (new Login()).processPasswordForget(req, res, app);
+    })
 
 
 
@@ -80,11 +89,9 @@ module.exports = (app) => {
 
     });
 
-    /////////
-    // 
-    // Gestion des routes de la page admin
-    // 
-    /////////
+
+    //---------------------------- Gestion des routes de la page admin
+
 
     // route vers la page admin
     app.get('/admin/dashboard'

@@ -1,0 +1,27 @@
+extends ../layout_admin
+
+block content
+    h2 ✉️/  Messages
+
+    .headRealty
+        h3 Liste des messages
+        //- .adminButton.realtyList
+        //-     a(href="/admin/users/add") Enregistrer un nouvel utilisateur
+    
+    .contentMessages 
+        table 
+            thead 
+                tr 
+                    th Email
+                    th Nom
+                    th Sujet
+                    th Message
+            tbody
+                each val in messages
+                    tr
+                        td= val.email 
+                        td= val.nom
+                        td= val.sujet
+                        td= val.message
+                        td.open 
+                            a(href="/admin/messages/affichage/"+ val._id) Ouvrir

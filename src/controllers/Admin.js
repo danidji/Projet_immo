@@ -99,9 +99,20 @@ module.exports = class Admin {
     }
 
     printMsg(req, res) {
-        res.render('admin/messages/affichage', {
-            title: 'TeLoger'
-        })
+        console.log(`Admin -> printMsg -> req.params`, req.params)
+
+        repoContact.findOneMsg(req.params.id)
+            .then((result) => {
+                console.log(`Admin -> .then -> result`, result)
+
+                res.render('admin/messages/affichage', {
+                    title: 'TeLoger', msg: result
+                })
+
+            }).catch((err) => {
+                console.error(err.message)
+            })
+
     }
 
 

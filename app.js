@@ -61,14 +61,6 @@ app.use((req, res, next) => {
   //dev admin session
   // req.session.users = config.userDevAdmin;
   res.locals.session = req.session;
-  // console.log(res.locals)
-
-  // if (res.locals.session !== undefined) {
-  //   console.log('---app.js---');
-  // console.log(res.locals.session)
-  //   console.log(res.locals)
-  // }
-
   next();
 });
 

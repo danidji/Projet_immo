@@ -7,19 +7,19 @@ block content
 	form.formRegister(action="/inscription", method="post") 
 		input(type='hidden', name='csrf', value=token_csrf)
 		.mail
-			label(for="email") Adresse E-mail :
 			input(
 				type="email"
 				, name="email"
 				,class="formInput email"
+				,placeholder="Adresse E-mail :"
 				,required
 				)
 		.psw
-			label(for="pass") mot de passe :
 			input(
 				type="password"
 				, name="pass"
 				,class="formInput pass"
+				,placeholder="Mot de passe :"
 				,minLength="6"
 				,required
 				)
@@ -28,25 +28,25 @@ block content
 				option(value="male") Monsieur 
 				option(value="female") Madame
 		.firstName
-			label(for="prenom") prénom : 
 			input(
 				type="text"
 				, name="prenom"
 				, class="formInput prenom"
+				,placeholder="Prénom : "
 				)
 		.lastName
-			label(for="nom") Nom de famille :
 			input(
 				type="text"
 				, name="nom"
 				, class="formInput nom"
+				,placeholder="Nom de famille :"
 				)
 		.phoneNumber
-				label(for="phone") Téléphone : 
 				input(
 					type="tel"
 					, name="phone"
 					, class= "formInput phone"
+					,placeholder="Téléphone :"
 					)
 		.checked
 			input(type="submit",class='formInput check' value="Enregistrer")

@@ -81,7 +81,13 @@ module.exports = (app) => {
         (new Login()).processPasswordForget(req, res, app);
     })
 
+    app.get('/nouveau-mot-de-passe/:token', (req, res) => {
+        (new Login()).printNewPassword(req, res);
+    })
 
+    app.post('/nouveau-mot-de-passe/:token', (req, res) => {
+        (new Login()).processNewPassword(req, res);
+    })
 
     //route de déconnexion utilisateur
     app.get('/logout', (req, res) => {

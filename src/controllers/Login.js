@@ -8,6 +8,8 @@ const ForgottenPassword = require('../repository/ForgottenPassword');
 const MailerService = require('../services/Mailer.js');
 
 const config = require('../../app/config')
+const repoPassword = new ForgottenPassword();
+const repoUser = new User()
 
 
 module.exports = class Login {
@@ -29,7 +31,7 @@ module.exports = class Login {
 
         // vérifier si l'email et le mot de passe sont bien présent en bdd 
 
-        const verifMail = await (new User()).findMail(userLogin.email);
+        const verifMail = await repoUser.findMail(userLogin.email);
         // console.log(verifMail)
         //si le mail tapé est résent en base alors je controle si le mdp est correct 
         if (verifMail !== null) {
@@ -87,13 +89,14 @@ module.exports = class Login {
             , token: crypto.createHash('sha1').update(`${new Date().toDateString()}${Math.random()}`).digest('hex')
         };
 
-        (new ForgottenPassword()).add(newPasswordData).then((result) => {
+        repoPassword.add(newPasswordData).then((result) => {
 
             // console.log("🚀 Login ~ result", result);
 
             // On génére le mail
             app.render('mails/regenerate_password.pug', { pass: result }, (err, html) => {
                 // On vérifie si l'adresse email existe dans notre NDD
+                console.log('html:', html);
                 (new User()).findMail(email).then((result) => {
                     // si l'email existe
                     if (result) {
@@ -107,8 +110,54 @@ module.exports = class Login {
             });
         })
 
+    }
 
+    printNewPassword(req, res) {
+        repoPassword.findOneRequest(req.params.token).then((result) => {
+            // console.log(result)
+            if (result) {
+                let today = new Date()
+                let timeDiff = today.getTime() - result.date.getTime()
+                //              v--- 30min
+                if (timeDiff < 1800000) {
+                    res.render('authentification/new-password', { title: 'TeLoger', pass: result })
+                } else {
+                    res.send('Demande échoué - refaire une demande')
+                }
+
+            } else {
+                res.send('Email non reconnu')
+            }
+
+        })
+    }
+
+    processNewPassword(req, res) {
+
+        // console.log(req.params)
+        repoPassword.findOneRequest(req.params.token)
+            .then((result) => {
+                repoUser.findMail(result.email)
+                    .then((result) => {
+                        let newPwd = req.body.pass
+
+                        let salt = bcrypt.genSaltSync(10);
+                        //   v--mdp crypter                  v-- mdp à crypter
+                        let passwordHash = bcrypt.hashSync(newPwd, salt);
+
+
+                        // console.log(newPwd)
+                        // console.log(passwordHash);
+                        repoUser.updateOneUser(result._id, { pass: passwordHash })
+                            .then(() => {
+
+                                // RAJOUTER UN MSG FLASH
+                                res.redirect('/login');
+                            })
+                    })
+            })
 
     }
+
+
 };
-;

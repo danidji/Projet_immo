@@ -24,4 +24,14 @@ module.exports = class ForgottenPassword {
             })
         })
     }
+
+    findOneRequest(token) {
+        return new Promise((resolve, reject) => {
+            this.db.findOne({ token: token }, (err, doc) => {
+                if (err) reject(err);
+                // console.log('élément trouvé en base');
+                resolve(doc);
+            });
+        });
+    }
 }

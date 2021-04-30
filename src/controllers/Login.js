@@ -118,6 +118,7 @@ module.exports = class Login {
                 let timeDiff = today.getTime() - result.date.getTime()
                 //              v--- 30min
                 if (timeDiff < 1800000) {
+
                     res.render('authentification/new-password', { title: 'TeLoger', pass: result })
                 } else {
                     res.send('Demande échoué - refaire une demande')
@@ -146,10 +147,12 @@ module.exports = class Login {
 
                         // console.log(newPwd)
                         // console.log(passwordHash);
-                        repoUser.updateOneUser(result._id, { pass: passwordHash })
+                        repoUser.updateOneUser(result._id, { pass: passwordHash }).then(() => {
+                            repoPassword.deleteOneRequest(req.params.token)
+                        })
                             .then(() => {
 
-                                // RAJOUTER UN MSG FLASH
+                                req.flash('notify', 'Mot de passe modifié');
                                 res.redirect('/login');
                             })
                     })

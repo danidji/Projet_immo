@@ -34,4 +34,14 @@ module.exports = class ForgottenPassword {
             });
         });
     }
+
+    deleteOneRequest(token) {
+        return new Promise((resolve, reject) => {
+            this.db.deleteOne({ token: token }, (err) => {
+                console.log('élément supprimé');
+                if (err) reject(err)
+                resolve();
+            })
+        })
+    }
 }

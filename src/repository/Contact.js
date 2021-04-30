@@ -21,9 +21,7 @@ module.exports = class Contact {
     add(contactData) {
         return new Promise((resolve, reject) => {
             this.db.create(contactData, (err, doc) => {
-                console.log('élément ajouté à la bdd');
                 if (err) reject(err)
-                // console.log(doc)
                 resolve(doc)
             })
         })
@@ -35,5 +33,14 @@ module.exports = class Contact {
                 resolve(docs);
             });
         })
+    }
+
+    findOneMsg(id) {
+        return new Promise((resolve, reject) => {
+            this.db.findOne({ _id: id }, (err, doc) => {
+                if (err) reject(err);
+                resolve(doc);
+            });
+        });
     }
 }

@@ -153,8 +153,8 @@ module.exports = (app) => {
 
     // gestion du formulaire de modification des biens
     app.post('/admin/modifyRealty/:id'
-        , csrf.verify
         , require('express-fileupload')({ createParentPath: true })
+        , csrf.verify
         , (req, res) => {
             repoRealtyList.updateForm(req, res);
         })
@@ -193,6 +193,7 @@ module.exports = (app) => {
         , (req, res) => {
             (new Admin()).processUpdateForm(req, res);
         })
+    //routes pour la gestion des messages
 
     app.get('/admin/messages'
         , (req, res) => {

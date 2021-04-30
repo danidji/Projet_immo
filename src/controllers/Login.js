@@ -82,8 +82,6 @@ module.exports = class Login {
         let mailer = new MailerService();
         let email = req.body.email;
 
-        // let token = crypto.createHash('sha1').update(`${new Date().toDateString()}${Math.random()}`).digest('hex')
-
         let newPasswordData = {
             email: email
             , token: crypto.createHash('sha1').update(`${new Date().toDateString()}${Math.random()}`).digest('hex')

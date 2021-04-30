@@ -9,8 +9,6 @@ module.exports = class Biens {
     }
 
     processForm(req, res) {
-        // console.log('req.body');
-        // console.log(req.body);
 
         let realtyAdress = {
             sellerName: req.body.seller
@@ -58,9 +56,6 @@ module.exports = class Biens {
                 }
                 //Si mon tableau contient des données
                 if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
-                    // console.log(typeof (req.files.photos));
-                    // console.log('req.files.photos :');
-                    // console.log(req.files.photos);
 
                     //Je rajoute ma promesse de déplacement des photos upload
                     Object.values(req.files.photos).forEach(file => {
@@ -75,7 +70,6 @@ module.exports = class Biens {
 
                 }
             }
-            // console.log(photos)
 
             //J'exécute mes déplacements de photo
             Promise.all(photos)

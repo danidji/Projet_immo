@@ -3,20 +3,20 @@ extends ../layout_admin
 block content
     h2 ✉️/  Messages
 
-    .headMessage
-        //- .adminButton.realtyList
-        //-     a(href="#") Répondre 
-        //- .adminButton.realtyList
-        //-     a(href="#") Supprimer 
+    //- .headMessage
+    //-     .adminButton.realtyList
+    //-         a(href="#") Répondre 
+    //-     .adminButton.realtyList
+    //-         a(href="#") Supprimer 
     
     .contentMessages
 
         .expediteur 
-            p De : 
+            p De : #{msg.nom} - #{msg.email}
         
         .subject 
-            p Sujet : 
+            p Sujet : #{msg.sujet}
 
         .message 
-            p 
+            p #{msg.message}
         

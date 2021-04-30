@@ -28,13 +28,13 @@ html
                   a(class=val.class,href=val.lien) #{val.text}
 
 
-      //- - var messages = getMessages()
-      //-   if messages.notify
-      //-     each msg in messages.notify
-      //-       .alert.alert-info= msg
-      //-   if messages.error
-      //-     each msg in messages.error
-      //-       .alert.alert-danger= msg
+      - var messages = getMessages()
+        if messages.notify
+          each msg in messages.notify
+            .alert.alert-info= msg
+        if messages.error
+          each msg in messages.error
+            .alert.alert-danger= msg
             
     .content_page
       block content

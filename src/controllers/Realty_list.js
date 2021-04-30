@@ -8,8 +8,6 @@ module.exports = class Biens {
 
         repo.findAllRealty()
             .then((result) => {
-                // console.log(result)
-                // console.log(result[0]._id)
 
                 res.render('admin/realtyList', {
                     title: 'TeLoger'
@@ -19,7 +17,6 @@ module.exports = class Biens {
 
     }
     deleteRealty(req, res) {
-        // console.log('controler delete');
         repo.deleteOneRealty(req.params.id)
             .then(() => {
                 req.flash('notify', 'Bien supprimé');
@@ -33,7 +30,6 @@ module.exports = class Biens {
     printModifyForm(req, res) {
         repo.findOneRealty(req.params.id)
             .then((result) => {
-                console.log(result)
                 res.render('admin/modify_realty', {
                     title: 'TeLoger'
                     , realty: result
@@ -42,8 +38,6 @@ module.exports = class Biens {
             })
     }
     updateForm(req, res) {
-        // console.log('req.body');
-        // console.log(req.body)
         let updateData = {
             realtyAdress: {
                 sellerName: req.body.seller
@@ -64,12 +58,11 @@ module.exports = class Biens {
                 , infosContact: req.body.infosContact
             }
         }
-        // console.log(req.params.id)
-        // console.log('--realty_list----');
-        // console.log(updateData);
 
         let photosPathName = [];
         let photos = [];
+
+
         // Enregistrement des images
         //Si mon obj req.files n'est pas vide (alors j'ai bien des fichiers d'upload)
         if (typeof req.files != 'undefined' && req.files != null) {
@@ -85,9 +78,6 @@ module.exports = class Biens {
             }
             //Si mon tableau contient des données
             if (typeof req.files.photos != 'undefined' && req.files.photos.length > 0) {
-                // console.log(typeof (req.files.photos));
-                // console.log('req.files.photos :');
-                // console.log(req.files.photos);
 
                 //Je rajoute ma promesse de déplacement des photos upload
                 Object.values(req.files.photos).forEach(file => {
@@ -99,15 +89,11 @@ module.exports = class Biens {
         }
         //On rajoute les url des images dans la bdd
 
-        // console.log('--realty_list----');
-        // console.log(updateData);
         // //J'exécute mes déplacements de photo
         Promise.all(photos);
 
         //je récupère mon tableau de lien enregistré en bdd
         repo.findOneRealty(req.params.id).then((result) => {
-            console.log('Old Url_images :', result.url_images);
-            console.log('photosPathName : ', photosPathName);
             //je compare mon nouveau tableau avec l'initial
             let verif = false;
             photosPathName.forEach(url => {
@@ -121,11 +107,7 @@ module.exports = class Biens {
                 if (!verif) {
                     result.url_images.push(url)
                 }
-                // console.log(`url : ${url} 
-                // présente : ${verif}`)
-
             })
-            // console.log('new tab :', result.url_images);
 
             updateData.url_images = result.url_images;
 

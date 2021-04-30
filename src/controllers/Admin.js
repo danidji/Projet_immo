@@ -59,7 +59,8 @@ module.exports = class Admin {
             , phone: req.body.phone
             , role: req.body.role
         };
-        // console.log(req.body)
+        console.log(`Admin -> processUpdateForm -> req.body`, req.body)
+
         repo.updateOneUser(req.params.id, userData).then(() => {
             req.flash('notify', 'élément modifié !!')
             res.redirect('/admin/users')
@@ -83,12 +84,6 @@ module.exports = class Admin {
                 let minutes = thisDate.getMinutes();
                 return `le ${day}/${month}/${year} à ${hours}:${minutes}`
             }
-            /*
-            for (let key in result) {
-                result[key].txtDate = formatDate(result[key].date);
-                console.log(result[key].date);
-                console.log(formatDate(result[key].date));
-            }*/
 
             result.map(element => {
                 element.txtDate = formatDate(element.date);

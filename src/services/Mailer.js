@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer'); // doc : https://nodemailer.com/about/
-const config = require('../../app/config-dev');
+const config = require('../../app/config');
 
 module.exports = class Mailer {
     constructor() {

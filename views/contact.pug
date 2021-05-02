@@ -1,8 +1,8 @@
 extends layout
 
 block content
-    h1 Contacter-nous
-    .content_contact
+    .content_form
+        h2 Contacter-nous :
         form.formContact(action='/contact/envoie-message', method='post')
             input(type='hidden', name='csrf', value=session.token)
             .mail

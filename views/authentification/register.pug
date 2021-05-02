@@ -2,55 +2,57 @@ extends ../layout
 
 block content
 
-	h1 Inscrivez-vous 
+	.content_form
 
-	form.formRegister(action="/inscription", method="post") 
-		input(type='hidden', name='csrf', value=token_csrf)
-		.mail
-			input(
-				type="email"
-				, name="email"
-				,class="formInput email"
-				,placeholder="Adresse E-mail :"
-				,required
-				)
-		.psw
-			input(
-				type="password"
-				, name="pass"
-				,class="formInput pass"
-				,placeholder="Mot de passe :"
-				,minLength="6"
-				,required
-				)
-		.civility 
-			select(name="civility", class="formInput gender")
-				option(value="male") Monsieur 
-				option(value="female") Madame
-		.firstName
-			input(
-				type="text"
-				, name="prenom"
-				, class="formInput prenom"
-				,placeholder="Prénom : "
-				)
-		.lastName
-			input(
-				type="text"
-				, name="nom"
-				, class="formInput nom"
-				,placeholder="Nom de famille :"
-				)
-		.phoneNumber
+		h2 Inscrivez-vous 
+
+		form.formRegister(action="/inscription", method="post") 
+			input(type='hidden', name='csrf', value=token_csrf)
+			.mail
 				input(
-					type="tel"
-					, name="phone"
-					, class= "formInput phone"
-					,placeholder="Téléphone :"
+					type="email"
+					, name="email"
+					,class="formInput email"
+					,placeholder="Adresse E-mail * "
+					,required
 					)
-		.checked
-			input(type="submit",class='formInput check' value="Enregistrer")
+			.psw
+				input(
+					type="password"
+					, name="pass"
+					,class="formInput pass"
+					,placeholder="Mot de passe *"
+					,minLength="6"
+					,required
+					)
+			.civility 
+				select(name="civility", class="formInput gender")
+					option(value="male") Monsieur 
+					option(value="female") Madame
+			.firstName
+				input(
+					type="text"
+					, name="prenom"
+					, class="formInput prenom"
+					,placeholder="Prénom  "
+					)
+			.lastName
+				input(
+					type="text"
+					, name="nom"
+					, class="formInput nom"
+					,placeholder="Nom de famille "
+					)
+			.phoneNumber
+					input(
+						type="tel"
+						, name="phone"
+						, class= "formInput phone"
+						,placeholder="Téléphone "
+						)
+			.checked
+				input(type="submit",class='formInput check' value="Enregistrer")
 
-		.alreadyRegister
-			p J'ai déjà un compte, 
-				a(href='/login') se connecter
+			.alreadyRegister
+				p J'ai déjà un compte, 
+					a(href='/login') se connecter

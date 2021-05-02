@@ -3,7 +3,7 @@ extends layout
 block content
 
   .home_container 
-    h1 Nos biens immobiliers :
+    h2 Nos biens immobiliers :
     ul.realty_contents 
       each realty in realties 
         +realtyList(realty.realtyAdress.type_realty

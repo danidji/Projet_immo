@@ -1,29 +1,29 @@
 extends ../layout
 
 block content
+	.content_form
+		h2 Connectez-vous 
 
-	h1 Connectez-vous 
-
-	form.formLogin(action="/connexion", method="post")
-		input(type='hidden', name='csrf', value=session.token) 
-		.mail
-			label(for="email") Adresse E-mail :
-			input(
-				type="email"
-				, name="email"
-				,class="formInput email"
-				,required
-				)
-		.psw
-			label(for="pass") mot de passe :
-			input(
-				type="password"
-				, name="pass"
-				,class="formInput pass"
-				,minLength="6"
-				,required
-				)
-		.checked
-			input(type="submit",class='formInput check' value="Enregistrer")
-		.passwordForget
-			a(href='/mot-de-passe-oublie') Mot de passe oublié ?
+		form.formLogin(action="/connexion", method="post")
+			input(type='hidden', name='csrf', value=session.token) 
+			.mail
+				input(
+					type="email"
+					, name="email"
+					,class="formInput email"
+					,placeholder="Adresse E-mail *"
+					,required
+					)
+			.psw
+				input(
+					type="password"
+					, name="pass"
+					,class="formInput pass"
+					,placeholder="Mot de passe *"
+					,minLength="6"
+					,required
+					)
+			.checked
+				input(type="submit",class='formInput check' value="Enregistrer")
+			.passwordForget
+				a(href='/mot-de-passe-oublie') Mot de passe oublié ?

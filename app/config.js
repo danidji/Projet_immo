@@ -19,5 +19,12 @@ if (typeof process.env.PORT == 'undefined') {
             , phone: "0612345678"
         }
         , directory_product_image: __dirname + '/../public/images/realty'
+        , smtp: {
+            service: 'gmail'
+            , auth: {
+                user: 'solenhyathepickles@gmail.com'
+                , pass: process.env.pass
+            }
+        }
     }
 }

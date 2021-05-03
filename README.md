@@ -17,6 +17,6 @@ npm install express-generator -g
 - Finir l'envoi de mail dans la partie admin/message 
         -> page de réponse avec envoi de mail
         -> affichage de l'ensemble des messages non lues
-- Revoir le style des formulaires d'inscription et de connexion
+- Ajouter la connexion avec Firebase
 
   

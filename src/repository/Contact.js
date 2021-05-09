@@ -10,6 +10,7 @@ const contactSchema = mongoose.Schema({
     , textDate: { type: String, default: Date.now }
     , sujet: { type: String }
     , message: { type: String }
+    , non_lue: { type: Boolean }
 
 }, { versionKey: false });
 
@@ -42,5 +43,29 @@ module.exports = class Contact {
                 resolve(doc);
             });
         });
+    }
+
+    updateMsg(id, obj) {
+        return new Promise((resolve, reject) => {
+            this.db.updateOne({ _id: id }
+                , obj
+                , (err) => {
+                    console.log('élément modifié')
+                    if (err) reject(err)
+                    resolve() // renvoie une indication de fin de promesse
+                })
+        })
+    }
+    countUnreadMsg() {
+        return new Promise((resolve, reject) => {
+            this.db.aggregate([
+                { $match: { non_lue: true } }
+                , { $count: "unread" }
+            ]
+                , (err, doc) => {
+                    if (err) reject(err);
+                    resolve(doc);
+                })
+        })
     }
 }

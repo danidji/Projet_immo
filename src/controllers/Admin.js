@@ -6,9 +6,22 @@ const MailerService = require('../services/Mailer.js');
 
 module.exports = class Admin {
     print(req, res) {
-        res.render('admin/dashboard', {
-            title: 'TeLoger'
-        });
+        repoContact.countUnreadMsg().then((result) => {
+            console.log(`Admin -> repoContact.countUnreadMsg -> result`, result[0])
+            let nb = 0;
+            if (result[0] !== undefined) {
+                nb = result[0].unread;
+            }
+            req.session.nbMsg = nb;
+            // console.log(`Admin -> repoContact.countUnreadMsg -> nb`, nb)
+            res.render('admin/dashboard', {
+                title: 'TeLoger'
+                // , nbMsg: nb
+            });
+
+        })
+
+
     }
 
     printUsers(req, res) {
@@ -105,12 +118,23 @@ module.exports = class Admin {
         repoContact.findOneMsg(req.params.id)
             .then((result) => {
                 // console.log(`Admin -> .then -> result`, result)
-
+                // let nonLue = result.non_lue;
+                console.log(`Admin -> .then -> result`, result)
+                // console.log(`Admin -> .then -> nonLue`, nonLue)
+                repoContact.updateMsg(result._id, { non_lue: false })
                 res.render('admin/messages/affichage', {
                     title: 'TeLoger', msg: result
                 })
+            })
+            // .then((result) => {
+            //     console.log(`Admin -> .then -> result`, result)
 
-            }).catch((err) => {
+            //     res.render('admin/messages/affichage', {
+            //         title: 'TeLoger', msg: result
+            //     })
+
+            // })
+            .catch((err) => {
                 console.error(err.message)
             })
 

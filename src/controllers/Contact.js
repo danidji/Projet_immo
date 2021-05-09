@@ -14,6 +14,7 @@ module.exports = class Contact {
             , nom: req.body.nom
             , sujet: req.body.sujet
             , message: req.body.message
+            , non_lue: true
         }
         repo.add(contactData).then(() => {
             req.flash('notify', 'Votre message est bien envoyé !');

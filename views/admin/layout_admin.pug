@@ -13,7 +13,7 @@ html
           .notif 
               .notif_msg 
                 a(class='msg',href='/admin/messages') ✉️ Messages
-                span.nb.active 2
+                span.nb.active #{session.nbMsg}
                   
               //- .notif_alert ALT
         .sideBar_admin

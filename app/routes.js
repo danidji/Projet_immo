@@ -101,6 +101,7 @@ module.exports = (app) => {
 
     // route vers la page admin
     app.get('/admin/dashboard'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             (new Admin()).print(req, res);
 

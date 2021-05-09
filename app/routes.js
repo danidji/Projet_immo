@@ -204,6 +204,16 @@ module.exports = (app) => {
             (new Admin()).printMsg(req, res);
         })
 
+    app.get('/admin/messages/repondre/:id'
+        , (req, res) => {
+            (new Admin()).printResponse(req, res);
+        })
+
+    app.post('/message/repondre'
+        // , csrf.verify
+        , (req, res) => {
+            (new Admin()).processResponse(req, res);
+        })
     //route de deconnexion admin 
     app.get('/admin/logout_admin'
         , (req, res) => {

@@ -1,0 +1,30 @@
+extends ../layout_admin
+
+block content
+    h2 ✉️/  Messages
+
+    .headMessage
+        .adminButton.cancel
+            a(href="/admin/messages/affichage/"+ msg._id)  Retour
+
+
+    .content_form
+        h2 Répondre :
+        form.formContact(action='/message/repondre', method='post')
+            input(type='hidden', name='csrf', value=session.token)
+            .mail
+                input(type="email"
+                    , name="email"
+                    , class="formInput email"
+                    , placeholder="Adresse e-mail *"
+                    , value=msg.email
+                    )
+            .lastName
+                input(type="text", name="nom", class="formInput nom", placeholder="Nom *", value=msg.nom)
+            .subject
+                input(type="text", name="sujet", class="formInput sujet", placeholder="Sujet *", value=msg.sujet)
+            .message
+                textarea(name="message", class="textArea message", placeholder="Votre message *", required)
+            .checked
+                input(type="submit",class='check' value="Envoyer")
+    

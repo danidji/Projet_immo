@@ -93,9 +93,11 @@ module.exports = class Login {
 
             // On génére le mail
             app.render('mails/regenerate_password.pug', { pass: result }, (err, html) => {
+
                 // On vérifie si l'adresse email existe dans notre NDD
-                console.log('html:', html);
+                // console.log('html:', html);
                 (new User()).findMail(email).then((result) => {
+                    console.log(`Login -> app.render -> html`, html)
                     // si l'email existe
                     if (result) {
                         // on envoi le mail

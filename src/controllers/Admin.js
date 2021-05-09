@@ -2,6 +2,7 @@ let User = require('../repository/User');
 let Contact = require('../repository/Contact');
 let repo = new User();
 let repoContact = new Contact();
+const MailerService = require('../services/Mailer.js');
 
 module.exports = class Admin {
     print(req, res) {
@@ -89,7 +90,7 @@ module.exports = class Admin {
                 element.txtDate = formatDate(element.date);
                 return element;
             });
-            console.log(result)
+            // console.log(result)
 
             res.render('admin/messages/list', {
                 title: 'TeLoger'
@@ -99,11 +100,11 @@ module.exports = class Admin {
     }
 
     printMsg(req, res) {
-        console.log(`Admin -> printMsg -> req.params`, req.params)
+        // console.log(`Admin -> printMsg -> req.params`, req.params)
 
         repoContact.findOneMsg(req.params.id)
             .then((result) => {
-                console.log(`Admin -> .then -> result`, result)
+                // console.log(`Admin -> .then -> result`, result)
 
                 res.render('admin/messages/affichage', {
                     title: 'TeLoger', msg: result
@@ -112,6 +113,36 @@ module.exports = class Admin {
             }).catch((err) => {
                 console.error(err.message)
             })
+
+    }
+
+    printResponse(req, res) {
+        // console.log(`Admin -> printMsg -> req.params`, req.params)
+
+        repoContact.findOneMsg(req.params.id)
+            .then((result) => {
+                // console.log(`Admin -> .then -> result`, result)
+
+                res.render('admin/messages/reponse', {
+                    title: 'TeLoger', msg: result
+                })
+
+            }).catch((err) => {
+                console.error(err.message)
+            })
+
+    }
+
+    processResponse(req, res) {
+        let mailer = new MailerService();
+        let email = req.body.email;
+        mailer.send(email, req.body.sujet, `<p>${req.body.message}</p>`).then((result) => {
+            console.log(`Admin -> mailer.send -> result`, result)
+            req.flash('notify', 'Mail envoyé !.');
+            res.redirect('/admin/messages');
+
+        })
+
 
     }
 

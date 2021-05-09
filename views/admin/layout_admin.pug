@@ -26,8 +26,17 @@ html
                 each val in [{lien:'/admin/dashboard',text:'🖥️ Dashboard'},{lien:'/admin/realtyList',text:'🏠 Biens'},{lien:'/admin/users',text:'👥 Utilisateurs'},{lien:'/admin/logout_admin',text:'📴 Logout'}]
                   li
                     a(class=val.class,href=val.lien) #{val.text}
-        .section_admin
-            block content
 
+        .section_admin
+          //- - var messages = getMessages()
+          //-   if messages.notify
+          //-     each msg in messages.notify
+          //-       .alert.alert-info= msg
+          //-   if messages.error
+          //-     each msg in messages.error
+          //-       .alert.alert-danger= msg
+          
+          block content
+        
     block scripts 
       script(src="/javascripts/admin/upload.js")

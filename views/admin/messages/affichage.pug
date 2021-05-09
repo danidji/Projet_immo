@@ -3,11 +3,11 @@ extends ../layout_admin
 block content
     h2 ✉️/  Messages
 
-    //- .headMessage
-    //-     .adminButton.realtyList
-    //-         a(href="#") Répondre 
-    //-     .adminButton.realtyList
-    //-         a(href="#") Supprimer 
+    .headMessage
+        .adminButton.realtyList
+            a(href="/admin/messages/repondre/"+ msg._id) Répondre 
+        .adminButton.realtyList
+            a(href="#") Supprimer 
     
     .contentMessages
 

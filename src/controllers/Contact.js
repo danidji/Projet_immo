@@ -1,6 +1,8 @@
 let Contact = require('../repository/Contact');
 let repo = new Contact();
 
+
+
 module.exports = class Contact {
     print(req, res) {
         res.render('contact', { title: 'TeLoger' });
@@ -18,4 +20,6 @@ module.exports = class Contact {
             res.redirect(`/contact`);
         })
     }
+
+
 }

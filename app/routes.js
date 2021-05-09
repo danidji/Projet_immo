@@ -109,6 +109,7 @@ module.exports = (app) => {
 
     // route vers la page biens
     app.get('/admin/biens'
+        , require('../src/services/checkUnreadMsg')
         , csrf.generate
         , (req, res) => {
             (new Biens()).print(req, res);
@@ -135,18 +136,21 @@ module.exports = (app) => {
 
     // routes vers la liste des biens 
     app.get('/admin/realtyList'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             repoRealtyList.printRealty(req, res);
         })
 
     // routes pour supprimer un bien 
     app.get('/admin/realtyList/delete/:id'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             // console.log('route delete');
             repoRealtyList.deleteRealty(req, res);
         })
     //route pour accéder au formulaire de modification d'un bien
     app.get('/admin/realtyList/modify/:id'
+        , require('../src/services/checkUnreadMsg')
         , csrf.generate
         , (req, res) => {
             repoRealtyList.printModifyForm(req, res)
@@ -162,6 +166,7 @@ module.exports = (app) => {
 
     // route vers la page utilisateurs
     app.get('/admin/users'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             (new Admin()).printUsers(req, res);
 
@@ -169,6 +174,7 @@ module.exports = (app) => {
 
     // route vers la page biens
     app.get('/admin/users/add'
+        , require('../src/services/checkUnreadMsg')
         , csrf.generate
         , (req, res) => {
             (new Admin()).printFormNewUser(req, res);
@@ -177,12 +183,14 @@ module.exports = (app) => {
 
     // routes pour supprimer un utilisateur 
     app.get('/admin/users/delete/:id'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             // console.log('route delete');
             (new Admin()).deleteUser(req, res);
         })
     //route pour modifier un utilisateur
     app.get('/admin/users/update/:id'
+        , require('../src/services/checkUnreadMsg')
         , csrf.generate
         , (req, res) => {
             // console.log('route delete');
@@ -197,15 +205,18 @@ module.exports = (app) => {
     //routes pour la gestion des messages
 
     app.get('/admin/messages'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             (new Admin()).printListMsg(req, res);
         })
     app.get('/admin/messages/affichage/:id'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             (new Admin()).printMsg(req, res);
         })
 
     app.get('/admin/messages/repondre/:id'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             (new Admin()).printResponse(req, res);
         })
@@ -217,6 +228,7 @@ module.exports = (app) => {
         })
     //route de deconnexion admin 
     app.get('/admin/logout_admin'
+        , require('../src/services/checkUnreadMsg')
         , (req, res) => {
             res.redirect('/')
         });
